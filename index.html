@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8">
+<html lang="fa" dir="rtl" data-theme="light"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>OceanLedger</title>
 <link rel="manifest" href="manifest.json">
@@ -43,63 +43,75 @@ td,th{padding:5px 8px;border-bottom:1px solid var(--bd);text-align:start;white-s
 #box .card{width:100%;max-width:560px}
 textarea{width:100%;height:200px;font:12px monospace}
 @media print{header,button,#box{display:none!important}body{background:#fff;color:#000}}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}.chip{border-radius:999px;padding:6px 14px}.chip.on{background:var(--pr);color:var(--pt);border-color:var(--pr)}
 </style></head><body>
 <header><h1>🌊 OceanLedger</h1><nav id="nav"></nav></header>
 <main id="main"></main><div id="box"></div>
 <script>
 const L={
-en:{trips:'Trips',reports:'Reports',crew:'Crew',settings:'Settings',newTrip:'New trip',date:'Date',from:'From',to:'To',income:'Fish income',expenses:'Expenses',net:'Net profit',owner:'Boat owner',captain:'Captain',worker:'Crew',earned:'Earned',paid:'Paid',balance:'Balance',pay:'Pay',save:'Save',del:'Delete',back:'Back',edited:'Edited',cat:'Category',qty:'Qty',unit:'Unit',price:'Unit price',total:'Total',note:'Notes',why:'Reason for change',addExp:'Add expense',boat:'Boat',ownerPct:'Owner share %',bonus:'Captain bonus',cur:'Currency',lang:'Language',dark:'Theme',addCrew:'Add',name:'Name',share:'Shares',none:'Nothing yet',export:'Export CSV',backup:'Backup / restore',print:'Print / PDF',period:'Period (YYYY or YYYY-MM)',months:'Months',byCat:'Expenses by category',cats:'Expense categories (comma separated)',addBoat:'Add boat',port:'Port',ownerName:'Owner name',copy:'Copy',load:'Load data',sure:'Delete?',all:'Totals',payAmt:'Amount',close:'Close',years:'Years'},
-fa:{trips:'سفرها',reports:'گزارش‌ها',crew:'خدمه',settings:'تنظیمات',newTrip:'سفر جدید',date:'تاریخ',from:'از',to:'تا',income:'درآمد فروش ماهی',expenses:'هزینه‌ها',net:'سود خالص',owner:'صاحب قایق',captain:'ناخدا',worker:'خدمه',earned:'سهم',paid:'پرداخت‌شده',balance:'مانده',pay:'پرداخت',save:'ذخیره',del:'حذف',back:'بازگشت',edited:'ویرایش‌شده',cat:'دسته',qty:'مقدار',unit:'واحد',price:'قیمت واحد',total:'جمع',note:'یادداشت',why:'دلیل تغییر',addExp:'افزودن هزینه',boat:'قایق',ownerPct:'سهم مالک ٪',bonus:'پاداش ناخدا',cur:'واحد پول',lang:'زبان',dark:'پوسته',addCrew:'افزودن',name:'نام',share:'سهم‌ها',none:'هنوز چیزی نیست',export:'خروجی CSV',backup:'پشتیبان / بازیابی',print:'چاپ / PDF',period:'دوره (YYYY یا YYYY-MM)',months:'ماه‌ها',byCat:'هزینه به تفکیک دسته',cats:'دسته‌های هزینه (با ویرگول)',addBoat:'افزودن قایق',port:'بندر',ownerName:'نام مالک',copy:'کپی',load:'بارگذاری داده',sure:'حذف شود؟',all:'جمع کل',payAmt:'مبلغ',close:'بستن',years:'سال‌ها'},
-ar:{trips:'الرحلات',reports:'التقارير',crew:'الطاقم',settings:'الإعدادات',newTrip:'رحلة جديدة',date:'التاريخ',from:'من',to:'إلى',income:'دخل بيع السمك',expenses:'المصروفات',net:'صافي الربح',owner:'مالك القارب',captain:'القبطان',worker:'الطاقم',earned:'المستحق',paid:'المدفوع',balance:'المتبقي',pay:'دفع',save:'حفظ',del:'حذف',back:'رجوع',edited:'معدّل',cat:'الفئة',qty:'الكمية',unit:'الوحدة',price:'سعر الوحدة',total:'الإجمالي',note:'ملاحظات',why:'سبب التعديل',addExp:'إضافة مصروف',boat:'القارب',ownerPct:'حصة المالك ٪',bonus:'مكافأة القبطان',cur:'العملة',lang:'اللغة',dark:'المظهر',addCrew:'إضافة',name:'الاسم',share:'الحصص',none:'لا شيء بعد',export:'تصدير CSV',backup:'نسخ احتياطي / استعادة',print:'طباعة / PDF',period:'الفترة (YYYY أو YYYY-MM)',months:'الأشهر',byCat:'المصروفات حسب الفئة',cats:'فئات المصروفات (مفصولة بفاصلة)',addBoat:'إضافة قارب',port:'الميناء',ownerName:'اسم المالك',copy:'نسخ',load:'تحميل البيانات',sure:'حذف؟',all:'الإجمالي',payAmt:'المبلغ',close:'إغلاق',years:'السنوات'},
-tr:{trips:'Seferler',reports:'Raporlar',crew:'Mürettebat',settings:'Ayarlar',newTrip:'Yeni sefer',date:'Tarih',from:'Başlangıç',to:'Bitiş',income:'Balık satış geliri',expenses:'Giderler',net:'Net kâr',owner:'Tekne sahibi',captain:'Kaptan',worker:'Mürettebat',earned:'Hak ediş',paid:'Ödenen',balance:'Kalan',pay:'Öde',save:'Kaydet',del:'Sil',back:'Geri',edited:'Düzenlendi',cat:'Kategori',qty:'Miktar',unit:'Birim',price:'Birim fiyat',total:'Toplam',note:'Notlar',why:'Değişiklik nedeni',addExp:'Gider ekle',boat:'Tekne',ownerPct:'Sahip payı %',bonus:'Kaptan primi',cur:'Para birimi',lang:'Dil',dark:'Tema',addCrew:'Ekle',name:'Ad',share:'Paylar',none:'Henüz yok',export:'CSV dışa aktar',backup:'Yedekle / geri yükle',print:'Yazdır / PDF',period:'Dönem (YYYY veya YYYY-AA)',months:'Aylar',byCat:'Kategoriye göre giderler',cats:'Gider kategorileri (virgülle)',addBoat:'Tekne ekle',port:'Liman',ownerName:'Sahip adı',copy:'Kopyala',load:'Veriyi yükle',sure:'Silinsin mi?',all:'Genel toplam',payAmt:'Tutar',close:'Kapat',years:'Yıllar'}};
-const LN={en:'English',fa:'فارسی',ar:'العربية',tr:'Türkçe'};
+fa:{trips:'سفرها',reports:'گزارش‌ها',crew:'خدمه',settings:'تنظیمات',newTrip:'سفر جدید',date:'تاریخ',from:'از',to:'تا',income:'درآمد ماهی',fish:'انواع ماهی',fishType:'نوع ماهی',kg:'مقدار (کیلو)',pricePerKg:'قیمت هر کیلو',addFish:'افزودن ماهی',fishTotal:'جمع درآمد ماهی',expenses:'هزینه‌ها',net:'سود خالص',owner:'صاحب قایق',captain:'ناخدا',worker:'خدمه',earned:'سهم',paid:'پرداخت‌شده',balance:'مانده',pay:'پرداخت',save:'ذخیره',del:'حذف',back:'بازگشت',edited:'ویرایش‌شده',cat:'دسته',qty:'مقدار',unit:'واحد',price:'قیمت واحد',total:'جمع',note:'یادداشت',why:'دلیل تغییر',boat:'قایق',ownerPct:'سهم مالک ٪',capShare:'سهم ناخدا',bonus:'پاداش ناخدا (سهم از مالک)',cur:'واحد پول',lang:'زبان',theme:'تم',tl:'روشن',td:'تیره',ta:'خودکار',addCrew:'افزودن',name:'نام',share:'سهم',none:'هنوز چیزی نیست',export:'خروجی CSV',backup:'پشتیبان / بازیابی',print:'چاپ / PDF',period:'دوره (YYYY یا YYYY-MM)',months:'ماه‌ها',years:'سال‌ها',byCat:'هزینه به تفکیک دسته',expCats:'دسته‌های هزینه و واحد پیش‌فرض',addCat:'افزودن دسته',addBoat:'افزودن قایق',port:'بندر',ownerName:'نام مالک',copy:'کپی',load:'بارگذاری داده',sure:'مطمئنید؟',all:'جمع کل',payAmt:'مبلغ',close:'بستن',draft:'پیش‌نویس ذخیره‌نشده',cont:'ادامه',discard:'حذف پیش‌نویس',clear:'پاک کردن مقدار'},
+en:{trips:'Trips',reports:'Reports',crew:'Crew',settings:'Settings',newTrip:'New trip',date:'Date',from:'From',to:'To',income:'Fish income',fish:'Fish types',fishType:'Fish type',kg:'Weight (kg)',pricePerKg:'Price per kg',addFish:'Add fish',fishTotal:'Total fish income',expenses:'Expenses',net:'Net profit',owner:'Boat owner',captain:'Captain',worker:'Crew',earned:'Earned',paid:'Paid',balance:'Balance',pay:'Pay',save:'Save',del:'Delete',back:'Back',edited:'Edited',cat:'Category',qty:'Qty',unit:'Unit',price:'Unit price',total:'Total',note:'Notes',why:'Reason for change',boat:'Boat',ownerPct:'Owner share %',capShare:'Captain shares',bonus:'Captain bonus (shares from owner)',cur:'Currency',lang:'Language',theme:'Theme',tl:'Light',td:'Dark',ta:'Auto',addCrew:'Add',name:'Name',share:'Shares',none:'Nothing yet',export:'Export CSV',backup:'Backup / restore',print:'Print / PDF',period:'Period (YYYY or YYYY-MM)',months:'Months',years:'Years',byCat:'Expenses by category',expCats:'Expense categories and default units',addCat:'Add category',addBoat:'Add boat',port:'Port',ownerName:'Owner name',copy:'Copy',load:'Load data',sure:'Sure?',all:'Totals',payAmt:'Amount',close:'Close',draft:'Unsaved draft',cont:'Continue',discard:'Discard draft',clear:'Clear values'},
+ar:{trips:'الرحلات',reports:'التقارير',crew:'الطاقم',settings:'الإعدادات',newTrip:'رحلة جديدة',date:'التاريخ',from:'من',to:'إلى',income:'دخل السمك',fish:'أنواع السمك',fishType:'نوع السمك',kg:'الوزن (كغ)',pricePerKg:'سعر الكيلو',addFish:'إضافة سمك',fishTotal:'إجمالي دخل السمك',expenses:'المصروفات',net:'صافي الربح',owner:'مالك القارب',captain:'القبطان',worker:'الطاقم',earned:'المستحق',paid:'المدفوع',balance:'المتبقي',pay:'دفع',save:'حفظ',del:'حذف',back:'رجوع',edited:'معدّل',cat:'الفئة',qty:'الكمية',unit:'الوحدة',price:'سعر الوحدة',total:'الإجمالي',note:'ملاحظات',why:'سبب التعديل',boat:'القارب',ownerPct:'حصة المالك ٪',capShare:'حصص القبطان',bonus:'مكافأة القبطان (حصص من المالك)',cur:'العملة',lang:'اللغة',theme:'المظهر',tl:'فاتح',td:'داكن',ta:'تلقائي',addCrew:'إضافة',name:'الاسم',share:'الحصص',none:'لا شيء بعد',export:'تصدير CSV',backup:'نسخ احتياطي / استعادة',print:'طباعة / PDF',period:'الفترة (YYYY أو YYYY-MM)',months:'الأشهر',years:'السنوات',byCat:'المصروفات حسب الفئة',expCats:'فئات المصروفات والوحدات الافتراضية',addCat:'إضافة فئة',addBoat:'إضافة قارب',port:'الميناء',ownerName:'اسم المالك',copy:'نسخ',load:'تحميل البيانات',sure:'متأكد؟',all:'الإجمالي',payAmt:'المبلغ',close:'إغلاق',draft:'مسودة غير محفوظة',cont:'متابعة',discard:'حذف المسودة',clear:'مسح القيم'},
+tr:{trips:'Seferler',reports:'Raporlar',crew:'Mürettebat',settings:'Ayarlar',newTrip:'Yeni sefer',date:'Tarih',from:'Başlangıç',to:'Bitiş',income:'Balık geliri',fish:'Balık türleri',fishType:'Balık türü',kg:'Miktar (kg)',pricePerKg:'Kg fiyatı',addFish:'Balık ekle',fishTotal:'Toplam balık geliri',expenses:'Giderler',net:'Net kâr',owner:'Tekne sahibi',captain:'Kaptan',worker:'Mürettebat',earned:'Hak ediş',paid:'Ödenen',balance:'Kalan',pay:'Öde',save:'Kaydet',del:'Sil',back:'Geri',edited:'Düzenlendi',cat:'Kategori',qty:'Miktar',unit:'Birim',price:'Birim fiyat',total:'Toplam',note:'Notlar',why:'Değişiklik nedeni',boat:'Tekne',ownerPct:'Sahip payı %',capShare:'Kaptan payı',bonus:'Kaptan primi (sahipten pay)',cur:'Para birimi',lang:'Dil',theme:'Tema',tl:'Açık',td:'Koyu',ta:'Otomatik',addCrew:'Ekle',name:'Ad',share:'Paylar',none:'Henüz yok',export:'CSV dışa aktar',backup:'Yedekle / geri yükle',print:'Yazdır / PDF',period:'Dönem (YYYY veya YYYY-AA)',months:'Aylar',years:'Yıllar',byCat:'Kategoriye göre giderler',expCats:'Gider kategorileri ve varsayılan birimler',addCat:'Kategori ekle',addBoat:'Tekne ekle',port:'Liman',ownerName:'Sahip adı',copy:'Kopyala',load:'Veriyi yükle',sure:'Emin misin?',all:'Genel toplam',payAmt:'Tutar',close:'Kapat',draft:'Kaydedilmemiş taslak',cont:'Devam',discard:'Taslağı sil',clear:'Değerleri temizle'}};
+const LN={fa:'فارسی',en:'English',ar:'العربية',tr:'Türkçe'};
 const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const uid=()=>Math.random().toString(36).slice(2,9),n=v=>parseFloat(v)||0,K='oceanledger.v1';
+const DC=()=>[{n:'ماچله',u:'پلاستیک'},{n:'جیم',u:'کیلو'},{n:'بنزین',u:'چلیکه'},{n:'روغن',u:'بطری'},{n:'یخ',u:'گونی'},{n:'دیگر',u:''}];
+const DB=()=>({id:'b1',name:'قایق ۱',port:'',owner:'',op:50,cs:1,bs:1});
 let S=null;try{S=JSON.parse(localStorage.getItem(K))}catch(e){}
-S=S||{set:{lang:'en',theme:'',cur:'USD',cats:['Bait','Ice','Food','Fuel','Oil','Other']},boats:[{id:'b1',name:'Boat 1',port:'',owner:'',op:50,cs:1,bonus:0}],crew:[],trips:[]};
+S=S||{v:2,set:{lang:'fa',theme:'light',cur:'تومان',cats:DC()},boats:[DB()],crew:[],trips:[],draft:null,edit:false};
+if(S.v!==2){S.v=2;S.set.lang='fa';S.set.theme='light';S.set.cur='تومان';S.set.cats=DC();S.boats.forEach(b=>{b.bs=1;delete b.bonus;if(b.name==='Boat 1')b.name='قایق ۱'});S.trips.forEach(x=>{x.fish=x.inc?[{id:uid(),type:'ماهی',kg:1,price:n(x.inc)}]:[];delete x.inc;x.bonus=1});S.draft=null;S.edit=false}
 const save=()=>{try{localStorage.setItem(K,JSON.stringify(S))}catch(e){}};
-const t=k=>(L[S.set.lang]||L.en)[k]||L.en[k]||k;
-const fmt=v=>{try{return new Intl.NumberFormat(S.set.lang,{style:'currency',currency:S.set.cur}).format(v)}catch(e){return v.toFixed(2)+' '+S.set.cur}};
+const t=k=>(L[S.set.lang]||L.fa)[k]||L.fa[k]||k;
+const fmt=v=>{const c=S.set.cur,l=S.set.lang;try{if(/^[A-Za-z]{3}$/.test(c))return new Intl.NumberFormat(l,{style:'currency',currency:c.toUpperCase()}).format(v);return new Intl.NumberFormat(l,{maximumFractionDigits:0}).format(v)+' '+c}catch(e){return Math.round(v)+' '+c}};
 const bname=id=>(S.boats.find(b=>b.id===id)||{name:'?'}).name;
 const today=()=>new Date(Date.now()-new Date().getTimezoneOffset()*6e4).toISOString().slice(0,10);
-let view='trips',draft=null,armed='',flt={from:'',to:''},rp='';
+let view='trips',draft=S.draft||null,armed='',flt={from:'',to:''},rp='';
+const fishTot=x=>(x.fish||[]).reduce((a,f)=>a+n(f.kg)*n(f.price),0);
+const catNames=d=>[...new Set([...S.set.cats.map(c=>c.n),...d.ex.map(e=>e.cat)])];
+const mkEx=c=>({id:uid(),cat:c,qty:'',unit:(S.set.cats.find(x=>x.n===c)||{u:''}).u,price:'',total:'',note:'',man:false});
 
-function calc(x){const inc=n(x.inc),exp=x.ex.reduce((a,e)=>a+n(e.total),0),net=inc-exp,own=net*n(x.op)/100,pool=net-own,bon=x.mem.some(m=>m.cap)?n(x.bonus):0,sh=x.mem.reduce((a,m)=>a+n(m.share),0),u=sh?(pool-bon)/sh:0;
+function calc(x){const inc=fishTot(x),exp=x.ex.reduce((a,e)=>a+n(e.total),0),net=inc-exp,sh=x.mem.reduce((a,m)=>a+n(m.share),0),pool=net*(1-n(x.op)/100),u=sh?pool/sh:0,bon=x.mem.some(m=>m.cap)?n(x.bonus)*u:0,own=net*n(x.op)/100-bon;
  const p=x.mem.map(m=>{const earned=n(m.share)*u+(m.cap?bon:0),paid=x.pays.filter(q=>q.id===m.id).reduce((a,q)=>a+n(q.amt),0);return{...m,earned,paid,bal:earned-paid}});
  return{inc,exp,net,own,pool,p}}
 
 function render(){const s=S.set,r=document.documentElement;r.lang=s.lang;r.dir=(s.lang==='fa'||s.lang==='ar')?'rtl':'ltr';
  s.theme?r.dataset.theme=s.theme:delete r.dataset.theme;
- $('#nav').innerHTML=['trips','reports','crew','settings'].map(v=>`<button class="${v===view&&!draft?'on':''}" data-act="nav" data-v="${v}">${t(v)}</button>`).join('');
- $('#main').innerHTML=draft?edHtml():view==='trips'?trHtml():view==='reports'?rpHtml():view==='crew'?crHtml():stHtml();
- if(draft)upd()}
+ const ed=draft&&S.edit&&view==='trips';
+ $('#nav').innerHTML=['trips','reports','crew','settings'].map(v=>`<button class="${v===view?'on':''}" data-act="nav" data-v="${v}">${t(v)}</button>`).join('');
+ $('#main').innerHTML=ed?edHtml():view==='trips'?trHtml():view==='reports'?rpHtml():view==='crew'?crHtml():stHtml();
+ if(ed)upd()}
 
 const list=()=>S.trips.filter(x=>(!flt.from||x.date>=flt.from)&&(!flt.to||x.date<=flt.to)).sort((a,b)=>b.date.localeCompare(a.date));
 function trHtml(){const l=list();return `<div class="row"><label>${t('from')}<input type="date" data-flt="from" value="${flt.from}"></label><label>${t('to')}<input type="date" data-flt="to" value="${flt.to}"></label></div>
-<div class="row"><button class="pr" data-act="new">+ ${t('newTrip')}</button><button data-act="csv">${t('export')}</button></div>
+${draft?`<div class="card" style="border-color:var(--ac)"><b>✎ ${t('draft')}</b> — ${draft.date}<div class="row"><button class="pr" data-act="cont">${t('cont')}</button><button class="bad" data-act="discard">${armed==='dr'?t('sure'):t('discard')}</button></div></div>`:`<div class="row"><button class="pr" data-act="new">+ ${t('newTrip')}</button></div>`}
+<div class="row"><button data-act="csv">${t('export')}</button></div>
 ${l.map(x=>{const c=calc(x),due=c.p.reduce((a,p)=>a+Math.max(0,p.bal),0);return `<div class="card tap" data-act="open" data-id="${x.id}"><b>${x.date}</b> — ${esc(bname(x.boat))}<div class="mu">${t('income')}: ${fmt(c.inc)} | ${t('net')}: ${fmt(c.net)}</div>${due>.005?`<div class="bad">${t('balance')}: ${fmt(due)}</div>`:'<div class="ok">✓</div>'}</div>`}).join('')||`<p class="mu">${t('none')}</p>`}`}
 
-function edHtml(){const d=draft,num=(k,v,a)=>`<input type="number" step="any" inputmode="decimal" ${a} value="${esc(v)}">`;
+function edHtml(){const d=draft,num=(v,a)=>`<input type="number" step="any" inputmode="decimal" ${a} value="${esc(v)}">`,names=catNames(d);
+ if(!d.sel||!names.includes(d.sel))d.sel=names[0];
+ let ei=d.ex.findIndex(e=>e.cat===d.sel);if(ei<0&&d.sel){d.ex.push(mkEx(d.sel));ei=d.ex.length-1}
+ const e=d.ex[ei],a=f=>`data-e="${ei}" data-f="${f}"`,types=[...new Set(S.trips.flatMap(x=>x.fish||[]).concat(d.fish).map(f=>f.type).filter(Boolean))];
 return `<button data-act="back">← ${t('back')}</button>
 <div class="card"><div class="grid"><label>${t('date')}<input type="date" data-k="date" value="${d.date}"></label>
 <label>${t('boat')}<select data-bk="1">${S.boats.map(b=>`<option value="${b.id}" ${b.id===d.boat?'selected':''}>${esc(b.name)}</option>`).join('')}</select></label>
-<label>${t('income')}${num(0,d.inc,'data-k="inc"')}</label>
-<label>${t('ownerPct')}${num(0,d.op,'data-k="op"')}</label>
-<label>${t('bonus')}${num(0,d.bonus,'data-k="bonus"')}</label></div></div>
+<label>${t('ownerPct')}${num(d.op,'data-k="op"')}</label>
+<label>${t('bonus')}${num(d.bonus,'data-k="bonus"')}</label></div></div>
+<h3>${t('fish')}</h3><datalist id="ft">${types.map(x=>`<option value="${esc(x)}">`).join('')}</datalist>
+${d.fish.map((f,i)=>{const a=k=>`data-fi="${i}" data-f="${k}"`;return `<div class="card"><div class="grid"><label>${t('fishType')}<input list="ft" ${a('type')} value="${esc(f.type)}"></label><label>${t('kg')}${num(f.kg,a('kg'))}</label><label>${t('pricePerKg')}${num(f.price,a('price'))}</label><label>${t('total')}<b id="fr-${i}">${fmt(n(f.kg)*n(f.price))}</b></label></div><button class="bad" data-act="rmfish" data-i="${i}">${t('del')}</button></div>`}).join('')}
+<button data-act="addfish">+ ${t('addFish')}</button>
+<div class="kv big"><span>${t('fishTotal')}</span><b id="ftot">${fmt(fishTot(d))}</b></div>
 <h3>${t('expenses')}</h3>
-${d.ex.map((e,i)=>{const a=f=>`data-e="${i}" data-f="${f}"`;return `<div class="card"><div class="grid">
-<label>${t('cat')}<select ${a('cat')}>${[...new Set([...S.set.cats,e.cat])].map(c=>`<option ${c===e.cat?'selected':''}>${esc(c)}</option>`).join('')}</select></label>
-<label>${t('qty')}${num(0,e.qty,a('qty'))}</label>
-<label>${t('unit')}<input ${a('unit')} value="${esc(e.unit)}"></label>
-<label>${t('price')}${num(0,e.price,a('price'))}</label>
-<label>${t('total')}${num(0,e.total,a('total'))}</label>
+<div class="chips">${names.map((c,i)=>{const x=d.ex.find(e=>e.cat===c),tt=x?n(x.total):0;return `<button class="chip ${c===d.sel?'on':''}" data-act="sel" data-i="${i}">${esc(c)}${tt?' · '+fmt(tt):''}</button>`}).join('')}</div>
+${e?`<div class="card"><div class="grid">
+<label>${t('qty')}${num(e.qty,a('qty'))}</label><label>${t('unit')}<input ${a('unit')} value="${esc(e.unit)}"></label>
+<label>${t('price')}${num(e.price,a('price'))}</label><label>${t('total')}${num(e.total,a('total'))}</label>
 <label>${t('note')}<input ${a('note')} value="${esc(e.note)}"></label></div>
 ${e.orig!==undefined?`<label>${t('why')}<input ${a('why')} value="${esc(e.why)}"></label>`:''}
 ${e.h&&e.h.length?`<div class="mu">✎ ${t('edited')}: ${e.h.map(h=>`${new Date(h.at).toLocaleString()}: ${fmt(h.o)} → ${fmt(h.n)}${h.w?' ('+esc(h.w)+')':''}`).join(' | ')}</div>`:''}
-<button class="bad" data-act="rmex" data-i="${i}">${t('del')}</button></div>`}).join('')}
-<button data-act="addex">+ ${t('addExp')}</button>
+<button data-act="clr">${t('clear')}</button></div>`:''}
 <h3>${t('crew')}</h3>
-${S.crew.map(c=>{const m=d.mem.find(m=>m.id===c.id),a=f=>`data-m="${c.id}" data-f="${f}"`;return `<div class="card row"><label><input type="checkbox" ${a('on')} ${m?'checked':''}> ${esc(c.name)}</label>${m?`<label>${t('share')}${num(0,m.share,a('share'))}</label><label><input type="radio" name="cap" ${a('cap')} ${m.cap?'checked':''}> ${t('captain')}</label>`:''}</div>`}).join('')||`<p class="mu">${t('none')} → ${t('crew')}</p>`}
+${S.crew.map(c=>{const m=d.mem.find(m=>m.id===c.id),a=f=>`data-m="${c.id}" data-f="${f}"`;return `<div class="card row"><label><input type="checkbox" ${a('on')} ${m?'checked':''}> ${esc(c.name)}</label>${m?`<label>${t('share')}${num(m.share,a('share'))}</label><label><input type="radio" name="cap" ${a('cap')} ${m.cap?'checked':''}> ${t('captain')}</label>`:''}</div>`}).join('')||`<p class="mu">${t('none')} → ${t('crew')}</p>`}
 <div id="sum"></div>
 <div class="row"><button class="pr" data-act="save">${t('save')}</button>${d.saved?`<button class="bad" data-act="del">${armed===d.id?t('sure'):t('del')}</button>`:''}<button data-act="print">${t('print')}</button></div>`}
 
@@ -107,12 +119,13 @@ function upd(){const d=draft,c=calc(d),kv=(a,b,x='')=>`<div class="kv ${x}"><spa
 $('#sum').innerHTML=`<div class="card">${kv(t('income'),fmt(c.inc))}${kv(t('expenses'),fmt(c.exp))}${kv(t('net'),fmt(c.net),'big')}${kv(t('owner')+' ('+n(d.op)+'%)',fmt(c.own))}</div>`+
 c.p.map(p=>`<div class="card"><b>${esc(p.name)}</b> <span class="mu">${p.cap?t('captain'):t('worker')} × ${p.share}</span> ${p.bal<=.005&&p.earned>0?'<span class="ok">✓</span>':''}
 ${kv(t('earned'),fmt(p.earned))}${kv(t('paid'),fmt(p.paid))}${kv(t('balance'),fmt(p.bal))}
-<div class="row"><input id="pa-${p.id}" type="number" step="any" placeholder="${t('payAmt')}: ${p.bal>0?p.bal.toFixed(2):''}"><button data-act="pay" data-id="${p.id}">${t('pay')}</button></div>
+<div class="row"><input id="pa-${p.id}" type="number" step="any" placeholder="${t('payAmt')}: ${p.bal>0?Math.round(p.bal):''}"><button data-act="pay" data-id="${p.id}">${t('pay')}</button></div>
 ${d.pays.filter(q=>q.id===p.id).map(q=>`<div class="mu">${new Date(q.at).toLocaleDateString()} — ${fmt(n(q.amt))}</div>`).join('')}</div>`).join('')}
 
 function commit(back){const d=draft;if(!d.date)return false;
+ d.ex=d.ex.filter(e=>n(e.total)!==0||e.orig!==undefined||e.note);d.fish=d.fish.filter(f=>f.type||n(f.kg)||n(f.price));
  d.ex.forEach(e=>{const v=n(e.total);if(e.orig!==undefined&&e.orig!==v)(e.h=e.h||[]).push({at:Date.now(),o:e.orig,n:v,w:e.why||''});e.total=v;e.orig=v;e.why=''});
- d.saved=true;const c=JSON.parse(JSON.stringify(d)),i=S.trips.findIndex(x=>x.id===d.id);i<0?S.trips.push(c):S.trips[i]=c;save();if(back)draft=null;return true}
+ d.saved=true;const c=JSON.parse(JSON.stringify(d)),i=S.trips.findIndex(x=>x.id===d.id);i<0?S.trips.push(c):S.trips[i]=c;if(back){draft=null;S.edit=false}save();return true}
 
 function rpHtml(){const l=S.trips.filter(x=>x.date.startsWith(rp)),M={},Y={},P={},C={},z=()=>({inc:0,exp:0,net:0,own:0}),T=z();
  l.forEach(x=>{const c=calc(x);[[M,x.date.slice(0,7)],[Y,x.date.slice(0,4)],[{t:T},'t']].forEach(([o,k])=>{const r=o[k]=o[k]||z();r.inc+=c.inc;r.exp+=c.exp;r.net+=c.net;r.own+=c.own});
@@ -132,68 +145,77 @@ ${S.crew.map(c=>`<div class="card row"><b style="flex:1">${esc(c.name)}</b><butt
 
 function stHtml(){const s=S.set;return `<div class="card"><div class="grid">
 <label>${t('lang')}<select data-lang="1">${Object.keys(LN).map(k=>`<option value="${k}" ${k===s.lang?'selected':''}>${LN[k]}</option>`).join('')}</select></label>
-<label>${t('dark')}<button data-act="theme">${s.theme||'auto'}</button></label>
-<label>${t('cur')}<input data-s="cur" value="${esc(s.cur)}" maxlength="3"></label></div>
-<label style="margin-top:8px">${t('cats')}<input data-s="cats" value="${esc(s.cats.join(', '))}"></label></div>
+<label>${t('theme')}<button data-act="theme">${t(s.theme==='light'?'tl':s.theme==='dark'?'td':'ta')}</button></label>
+<label>${t('cur')}<input data-s="cur" value="${esc(s.cur)}"></label></div></div>
+<h3>${t('expCats')}</h3>
+${s.cats.map((c,i)=>`<div class="card row"><label style="flex:1">${t('name')}<input data-ca="${i}" data-f="n" value="${esc(c.n)}"></label><label style="flex:1">${t('unit')}<input data-ca="${i}" data-f="u" value="${esc(c.u)}"></label><button class="bad" data-act="rmcat" data-i="${i}">✕</button></div>`).join('')}
+<button data-act="addcat">+ ${t('addCat')}</button>
 <h3>${t('boat')}</h3>
 ${S.boats.map((b,i)=>{const a=f=>`data-bo="${i}" data-f="${f}"`;return `<div class="card"><div class="grid">
 <label>${t('name')}<input ${a('name')} value="${esc(b.name)}"></label><label>${t('port')}<input ${a('port')} value="${esc(b.port)}"></label><label>${t('ownerName')}<input ${a('owner')} value="${esc(b.owner)}"></label>
-<label>${t('ownerPct')}<input type="number" step="any" ${a('op')} value="${b.op}"></label><label>${t('captain')} ${t('share')}<input type="number" step="any" ${a('cs')} value="${b.cs}"></label><label>${t('bonus')}<input type="number" step="any" ${a('bonus')} value="${b.bonus}"></label></div></div>`}).join('')}
+<label>${t('ownerPct')}<input type="number" step="any" ${a('op')} value="${b.op}"></label><label>${t('capShare')}<input type="number" step="any" ${a('cs')} value="${b.cs}"></label><label>${t('bonus')}<input type="number" step="any" ${a('bs')} value="${b.bs}"></label></div></div>`}).join('')}
 <div class="row"><button data-act="addboat">+ ${t('addBoat')}</button><button data-act="bk">${t('backup')}</button></div>`}
 
-function box(title,text,onload){const b=$('#box');b.style.display='flex';b.innerHTML=`<div class="card"><b>${esc(title)}</b><textarea id="bx"></textarea><div class="row"><button data-act="cp">${t('copy')}</button><button data-act="dl">⬇</button>${onload?`<button class="pr" data-act="ld">${t('load')}</button>`:''}<button data-act="cl">${t('close')}</button></div></div>`;$('#bx').value=text;box.f=onload;box.name=title}
-function csv(){const q=r=>r.map(c=>'"'+String(c).replace(/"/g,'""')+'"').join(','),R=[[t('date'),t('boat'),t('income'),t('expenses'),t('net'),t('owner'),t('name'),t('worker'),t('earned'),t('paid'),t('balance')]],E=[[t('date'),t('cat'),t('qty'),t('unit'),t('price'),t('total'),t('note')]];
- list().forEach(x=>{const c=calc(x),b=[x.date,bname(x.boat),c.inc,c.exp,c.net.toFixed(2),c.own.toFixed(2)];if(!c.p.length)R.push(b);c.p.forEach(p=>R.push([...b,p.name,p.cap?t('captain'):t('worker'),p.earned.toFixed(2),p.paid.toFixed(2),p.bal.toFixed(2)]));x.ex.forEach(e=>E.push([x.date,e.cat,e.qty,e.unit,e.price,n(e.total),e.note]))});
- box('CSV',R.map(q).join('\n')+'\n\n'+E.map(q).join('\n'))}
+function box(title,text,onload){const b=$('#box');b.style.display='flex';b.innerHTML=`<div class="card"><b>${esc(title)}</b><textarea id="bx"></textarea><div class="row"><button data-act="cp">${t('copy')}</button><button data-act="dl">⬇</button>${onload?`<button class="pr" data-act="ld">${t('load')}</button>`:''}<button data-act="cl">${t('close')}</button></div></div>`;$('#bx').value=text;box.f=onload}
+function csv(){const q=r=>r.map(c=>'"'+String(c).replace(/"/g,'""')+'"').join(','),R=[[t('date'),t('boat'),t('income'),t('expenses'),t('net'),t('owner'),t('name'),t('worker'),t('earned'),t('paid'),t('balance')]],E=[[t('date'),t('cat'),t('qty'),t('unit'),t('price'),t('total'),t('note')]],F=[[t('date'),t('fishType'),t('kg'),t('pricePerKg'),t('total')]];
+ list().forEach(x=>{const c=calc(x),b=[x.date,bname(x.boat),c.inc,c.exp,Math.round(c.net),Math.round(c.own)];if(!c.p.length)R.push(b);c.p.forEach(p=>R.push([...b,p.name,p.cap?t('captain'):t('worker'),Math.round(p.earned),Math.round(p.paid),Math.round(p.bal)]));x.ex.forEach(e=>E.push([x.date,e.cat,e.qty,e.unit,e.price,n(e.total),e.note]));(x.fish||[]).forEach(f=>F.push([x.date,f.type,f.kg,f.price,n(f.kg)*n(f.price)]))});
+ box('CSV',[R,F,E].map(r=>r.map(q).join('\n')).join('\n\n'))}
 
 document.addEventListener('click',ev=>{const b=ev.target.closest('[data-act]');if(!b)return;const a=b.dataset.act,d=draft;
- if(a==='nav'){view=b.dataset.v;draft=null}
- else if(a==='new'){const bt=S.boats[0];draft={id:uid(),date:today(),boat:bt.id,inc:'',op:bt.op,bonus:bt.bonus,ex:[],mem:[],pays:[],saved:false}}
- else if(a==='open'){draft=JSON.parse(JSON.stringify(S.trips.find(x=>x.id===b.dataset.id)))}
- else if(a==='back')draft=null;
- else if(a==='addex')d.ex.push({id:uid(),cat:S.set.cats[0]||'',qty:'',unit:'',price:'',total:'',note:'',man:false});
- else if(a==='rmex')d.ex.splice(+b.dataset.i,1);
+ if(a==='nav'){view=b.dataset.v}
+ else if(a==='new'){if(!draft){const bt=S.boats[0];draft={id:uid(),date:today(),boat:bt.id,fish:[],op:bt.op,bonus:bt.bs,ex:[],mem:[],pays:[],saved:false}}S.edit=true;view='trips'}
+ else if(a==='open'){if(!draft)draft=JSON.parse(JSON.stringify(S.trips.find(x=>x.id===b.dataset.id)));S.edit=true;view='trips'}
+ else if(a==='cont'){S.edit=true}
+ else if(a==='discard'){if(armed==='dr'){draft=null;S.edit=false;armed=''}else armed='dr'}
+ else if(a==='back')S.edit=false;
+ else if(a==='sel')d.sel=catNames(d)[+b.dataset.i];
+ else if(a==='clr'){const e=d.ex.find(e=>e.cat===d.sel);if(e){e.qty=e.price=e.total='';e.man=false}}
+ else if(a==='addfish')d.fish.push({id:uid(),type:'',kg:'',price:''});
+ else if(a==='rmfish')d.fish.splice(+b.dataset.i,1);
  else if(a==='save'){if(!commit(true))return}
- else if(a==='del'){if(armed===d.id){S.trips=S.trips.filter(x=>x.id!==d.id);save();draft=null;armed=''}else armed=d.id}
+ else if(a==='del'){if(armed===d.id){S.trips=S.trips.filter(x=>x.id!==d.id);draft=null;S.edit=false;armed=''}else armed=d.id}
  else if(a==='pay'){const c=calc(d).p.find(p=>p.id===b.dataset.id),v=n($('#pa-'+c.id).value)||c.bal;if(v<=0)return;d.pays.push({id:c.id,amt:v,at:Date.now()});commit(false)}
  else if(a==='print')window.print();
  else if(a==='csv'){csv();return}
- else if(a==='addcrew'){const v=$('#cn').value.trim();if(!v)return;S.crew.push({id:uid(),name:v});save()}
- else if(a==='rmcrew'){if(armed===b.dataset.id){S.crew=S.crew.filter(c=>c.id!==armed);save();armed=''}else armed=b.dataset.id}
- else if(a==='addboat'){S.boats.push({id:uid(),name:'Boat '+(S.boats.length+1),port:'',owner:'',op:50,cs:1,bonus:0});save()}
- else if(a==='theme'){S.set.theme=S.set.theme===''?'light':S.set.theme==='light'?'dark':'';save()}
- else if(a==='bk'){box(t('backup'),JSON.stringify(S),txt=>{S=JSON.parse(txt);save();$('#box').style.display='none';render()});return}
+ else if(a==='addcrew'){const v=$('#cn').value.trim();if(!v)return;S.crew.push({id:uid(),name:v})}
+ else if(a==='rmcrew'){if(armed===b.dataset.id){S.crew=S.crew.filter(c=>c.id!==armed);armed=''}else armed=b.dataset.id}
+ else if(a==='addboat')S.boats.push({...DB(),id:uid(),name:'قایق '+(S.boats.length+1)});
+ else if(a==='addcat')S.set.cats.push({n:'',u:''});
+ else if(a==='rmcat')S.set.cats.splice(+b.dataset.i,1);
+ else if(a==='theme')S.set.theme=S.set.theme==='light'?'dark':S.set.theme==='dark'?'':'light';
+ else if(a==='bk'){box(t('backup'),JSON.stringify(S),txt=>{S=JSON.parse(txt);save();draft=S.draft||null;$('#box').style.display='none';render()});return}
  else if(a==='cp'){$('#bx').select();try{document.execCommand('copy')}catch(e){}return}
  else if(a==='dl'){try{const u=URL.createObjectURL(new Blob(['\ufeff'+$('#bx').value],{type:'text/plain'})),l=document.createElement('a');l.href=u;l.download='oceanledger-'+today()+'.txt';l.click()}catch(e){}return}
  else if(a==='ld'){try{box.f($('#bx').value)}catch(e){$('#bx').value='Invalid data'}return}
  else if(a==='cl'){$('#box').style.display='none';return}
- render()});
+ S.draft=draft;save();render()});
 
 document.addEventListener('input',ev=>{const el=ev.target,D=el.dataset;if(el.tagName==='SELECT'||el.type==='checkbox'||el.type==='radio')return;
  if(D.rp!==undefined){rp=el.value;return}
- if(D.s){S.set[D.s]=D.s==='cats'?el.value.split(',').map(x=>x.trim()).filter(Boolean):el.value.toUpperCase();save();return}
- if(D.bo){S.boats[+D.bo][D.f]=['op','cs','bonus'].includes(D.f)?n(el.value):el.value;save();return}
+ if(D.s){S.set[D.s]=el.value;save();return}
+ if(D.ca){S.set.cats[+D.ca][D.f]=el.value;save();return}
+ if(D.bo){S.boats[+D.bo][D.f]=['op','cs','bs'].includes(D.f)?n(el.value):el.value;save();return}
  if(!draft)return;const d=draft;
  if(D.k)d[D.k]=el.value;
+ else if(D.fi!==undefined){const f=d.fish[+D.fi];f[D.f]=el.value;const o=$('#fr-'+D.fi);if(o)o.textContent=fmt(n(f.kg)*n(f.price));$('#ftot').textContent=fmt(fishTot(d))}
  else if(D.e!==undefined){const e=d.ex[+D.e],f=D.f;e[f]=el.value;
   if(f==='total')e.man=el.value!=='';
-  if((f==='qty'||f==='price'||f==='total')&&!e.man){e.total=String(+((e.qty===''?1:n(e.qty))*n(e.price)).toFixed(2));const o=document.querySelector(`[data-e="${D.e}"][data-f="total"]`);if(o)o.value=e.total}
-  if((f==='qty'||f==='price')&&!e.man){e.total=String(+((e.qty===''?1:n(e.qty))*n(e.price)).toFixed(2));const o=document.querySelector(`[data-e="${D.e}"][data-f="total"]`);if(o)o.value=e.total}}
+  if((f==='qty'||f==='price'||f==='total')&&!e.man){e.total=String(+((e.qty===''?1:n(e.qty))*n(e.price)).toFixed(2));const o=document.querySelector(`[data-e="${D.e}"][data-f="total"]`);if(o)o.value=e.total}}
  else if(D.m&&D.f==='share')d.mem.find(m=>m.id===D.m).share=el.value;
- upd()});
+ S.draft=d;save();upd()});
 
 document.addEventListener('change',ev=>{const el=ev.target,D=el.dataset;
  if(D.flt){flt[D.flt]=el.value;render();return}
  if(D.lang){S.set.lang=el.value;save();render();return}
  if(!draft)return;const d=draft;
- if(D.bk){d.boat=el.value;const b=S.boats.find(b=>b.id===el.value);d.op=b.op;d.bonus=b.bonus;render()}
- else if(D.e!==undefined&&D.f==='cat'){d.ex[+D.e].cat=el.value}
+ if(D.bk){d.boat=el.value;const b=S.boats.find(b=>b.id===el.value);d.op=b.op;d.bonus=b.bs}
  else if(D.m){const c=S.crew.find(c=>c.id===D.m);
   if(D.f==='on'){el.checked?d.mem.push({id:c.id,name:c.name,share:'1',cap:false}):d.mem=d.mem.filter(m=>m.id!==D.m)}
-  if(D.f==='cap'){d.mem.forEach(m=>m.cap=false);const m=d.mem.find(m=>m.id===D.m);m.cap=true;if(m.share==='1')m.share=String(S.boats.find(b=>b.id===d.boat).cs)}
-  render()}});
+  if(D.f==='cap'){d.mem.forEach(m=>m.cap=false);const m=d.mem.find(m=>m.id===D.m);m.cap=true;if(m.share==='1')m.share=String(S.boats.find(b=>b.id===d.boat).cs)}}
+ else return;
+ S.draft=d;save();render()});
 
 render();
-if(/[?&]new=1/.test(location.search)){view='trips';render();const b=document.querySelector('[data-act="new"]');if(b)b.click()}
+if(/[?&]new=1/.test(location.search)){document.querySelector('[data-act="new"],[data-act="cont"]')?.click()}
 if('serviceWorker' in navigator&&location.protocol.startsWith('http')){let r=false;navigator.serviceWorker.addEventListener('controllerchange',()=>{if(r)return;r=true;if(window.__hadSW)location.reload()});window.__hadSW=!!navigator.serviceWorker.controller;navigator.serviceWorker.register('sw.js').catch(()=>{})}
 </script></body></html>

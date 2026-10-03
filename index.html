@@ -44,15 +44,17 @@ td,th{padding:5px 8px;border-bottom:1px solid var(--bd);text-align:start;white-s
 textarea{width:100%;height:200px;font:12px monospace}
 @media print{header,button,#box{display:none!important}body{background:#fff;color:#000}}
 .chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}.chip{border-radius:999px;padding:6px 14px}.chip.on{background:var(--pr);color:var(--pt);border-color:var(--pr)}
+.th{width:72px;height:72px;object-fit:cover;border-radius:8px;border:1px solid var(--bd);cursor:pointer}.thw{position:relative;display:inline-block}.thw button{position:absolute;top:-6px;inset-inline-end:-6px;min-height:0;padding:0 6px;border-radius:999px}
+input.num{direction:ltr;text-align:start}
 </style></head><body>
 <header><h1>🌊 OceanLedger</h1><nav id="nav"></nav></header>
 <main id="main"></main><div id="box"></div>
 <script>
 const L={
-fa:{trips:'سفرها',reports:'گزارش‌ها',crew:'خدمه',settings:'تنظیمات',newTrip:'سفر جدید',date:'تاریخ',from:'از',to:'تا',income:'درآمد ماهی',fish:'انواع ماهی',fishType:'نوع ماهی',kg:'مقدار (کیلو)',pricePerKg:'قیمت هر کیلو',addFish:'افزودن ماهی',fishTotal:'جمع درآمد ماهی',expenses:'هزینه‌ها',net:'سود خالص',owner:'صاحب قایق',captain:'ناخدا',worker:'خدمه',earned:'سهم',paid:'پرداخت‌شده',balance:'مانده',pay:'پرداخت',save:'ذخیره',del:'حذف',back:'بازگشت',edited:'ویرایش‌شده',cat:'دسته',qty:'مقدار',unit:'واحد',price:'قیمت واحد',total:'جمع',note:'یادداشت',why:'دلیل تغییر',boat:'قایق',ownerPct:'سهم مالک ٪',capShare:'سهم ناخدا',bonus:'پاداش ناخدا (سهم از مالک)',cur:'واحد پول',lang:'زبان',theme:'تم',tl:'روشن',td:'تیره',ta:'خودکار',addCrew:'افزودن',name:'نام',share:'سهم',none:'هنوز چیزی نیست',export:'خروجی CSV',backup:'پشتیبان / بازیابی',print:'چاپ / PDF',period:'دوره (YYYY یا YYYY-MM)',months:'ماه‌ها',years:'سال‌ها',byCat:'هزینه به تفکیک دسته',expCats:'دسته‌های هزینه و واحد پیش‌فرض',addCat:'افزودن دسته',addBoat:'افزودن قایق',port:'بندر',ownerName:'نام مالک',copy:'کپی',load:'بارگذاری داده',sure:'مطمئنید؟',all:'جمع کل',payAmt:'مبلغ',close:'بستن',draft:'پیش‌نویس ذخیره‌نشده',cont:'ادامه',discard:'حذف پیش‌نویس',clear:'پاک کردن مقدار'},
-en:{trips:'Trips',reports:'Reports',crew:'Crew',settings:'Settings',newTrip:'New trip',date:'Date',from:'From',to:'To',income:'Fish income',fish:'Fish types',fishType:'Fish type',kg:'Weight (kg)',pricePerKg:'Price per kg',addFish:'Add fish',fishTotal:'Total fish income',expenses:'Expenses',net:'Net profit',owner:'Boat owner',captain:'Captain',worker:'Crew',earned:'Earned',paid:'Paid',balance:'Balance',pay:'Pay',save:'Save',del:'Delete',back:'Back',edited:'Edited',cat:'Category',qty:'Qty',unit:'Unit',price:'Unit price',total:'Total',note:'Notes',why:'Reason for change',boat:'Boat',ownerPct:'Owner share %',capShare:'Captain shares',bonus:'Captain bonus (shares from owner)',cur:'Currency',lang:'Language',theme:'Theme',tl:'Light',td:'Dark',ta:'Auto',addCrew:'Add',name:'Name',share:'Shares',none:'Nothing yet',export:'Export CSV',backup:'Backup / restore',print:'Print / PDF',period:'Period (YYYY or YYYY-MM)',months:'Months',years:'Years',byCat:'Expenses by category',expCats:'Expense categories and default units',addCat:'Add category',addBoat:'Add boat',port:'Port',ownerName:'Owner name',copy:'Copy',load:'Load data',sure:'Sure?',all:'Totals',payAmt:'Amount',close:'Close',draft:'Unsaved draft',cont:'Continue',discard:'Discard draft',clear:'Clear values'},
-ar:{trips:'الرحلات',reports:'التقارير',crew:'الطاقم',settings:'الإعدادات',newTrip:'رحلة جديدة',date:'التاريخ',from:'من',to:'إلى',income:'دخل السمك',fish:'أنواع السمك',fishType:'نوع السمك',kg:'الوزن (كغ)',pricePerKg:'سعر الكيلو',addFish:'إضافة سمك',fishTotal:'إجمالي دخل السمك',expenses:'المصروفات',net:'صافي الربح',owner:'مالك القارب',captain:'القبطان',worker:'الطاقم',earned:'المستحق',paid:'المدفوع',balance:'المتبقي',pay:'دفع',save:'حفظ',del:'حذف',back:'رجوع',edited:'معدّل',cat:'الفئة',qty:'الكمية',unit:'الوحدة',price:'سعر الوحدة',total:'الإجمالي',note:'ملاحظات',why:'سبب التعديل',boat:'القارب',ownerPct:'حصة المالك ٪',capShare:'حصص القبطان',bonus:'مكافأة القبطان (حصص من المالك)',cur:'العملة',lang:'اللغة',theme:'المظهر',tl:'فاتح',td:'داكن',ta:'تلقائي',addCrew:'إضافة',name:'الاسم',share:'الحصص',none:'لا شيء بعد',export:'تصدير CSV',backup:'نسخ احتياطي / استعادة',print:'طباعة / PDF',period:'الفترة (YYYY أو YYYY-MM)',months:'الأشهر',years:'السنوات',byCat:'المصروفات حسب الفئة',expCats:'فئات المصروفات والوحدات الافتراضية',addCat:'إضافة فئة',addBoat:'إضافة قارب',port:'الميناء',ownerName:'اسم المالك',copy:'نسخ',load:'تحميل البيانات',sure:'متأكد؟',all:'الإجمالي',payAmt:'المبلغ',close:'إغلاق',draft:'مسودة غير محفوظة',cont:'متابعة',discard:'حذف المسودة',clear:'مسح القيم'},
-tr:{trips:'Seferler',reports:'Raporlar',crew:'Mürettebat',settings:'Ayarlar',newTrip:'Yeni sefer',date:'Tarih',from:'Başlangıç',to:'Bitiş',income:'Balık geliri',fish:'Balık türleri',fishType:'Balık türü',kg:'Miktar (kg)',pricePerKg:'Kg fiyatı',addFish:'Balık ekle',fishTotal:'Toplam balık geliri',expenses:'Giderler',net:'Net kâr',owner:'Tekne sahibi',captain:'Kaptan',worker:'Mürettebat',earned:'Hak ediş',paid:'Ödenen',balance:'Kalan',pay:'Öde',save:'Kaydet',del:'Sil',back:'Geri',edited:'Düzenlendi',cat:'Kategori',qty:'Miktar',unit:'Birim',price:'Birim fiyat',total:'Toplam',note:'Notlar',why:'Değişiklik nedeni',boat:'Tekne',ownerPct:'Sahip payı %',capShare:'Kaptan payı',bonus:'Kaptan primi (sahipten pay)',cur:'Para birimi',lang:'Dil',theme:'Tema',tl:'Açık',td:'Koyu',ta:'Otomatik',addCrew:'Ekle',name:'Ad',share:'Paylar',none:'Henüz yok',export:'CSV dışa aktar',backup:'Yedekle / geri yükle',print:'Yazdır / PDF',period:'Dönem (YYYY veya YYYY-AA)',months:'Aylar',years:'Yıllar',byCat:'Kategoriye göre giderler',expCats:'Gider kategorileri ve varsayılan birimler',addCat:'Kategori ekle',addBoat:'Tekne ekle',port:'Liman',ownerName:'Sahip adı',copy:'Kopyala',load:'Veriyi yükle',sure:'Emin misin?',all:'Genel toplam',payAmt:'Tutar',close:'Kapat',draft:'Kaydedilmemiş taslak',cont:'Devam',discard:'Taslağı sil',clear:'Değerleri temizle'}};
+fa:{trips:'سفرها',reports:'گزارش‌ها',crew:'خدمه',settings:'تنظیمات',newTrip:'سفر جدید',date:'تاریخ',from:'از',to:'تا',income:'درآمد ماهی',fish:'انواع ماهی',fishType:'نوع ماهی',kg:'مقدار (کیلو)',pricePerKg:'قیمت هر کیلو',addFish:'افزودن ماهی',fishTotal:'جمع درآمد ماهی',expenses:'هزینه‌ها',net:'سود خالص',owner:'صاحب قایق',captain:'ناخدا',worker:'خدمه',earned:'سهم',paid:'پرداخت‌شده',balance:'مانده',pay:'پرداخت',save:'ذخیره',del:'حذف',back:'بازگشت',edited:'ویرایش‌شده',cat:'دسته',qty:'مقدار',unit:'واحد',price:'قیمت واحد',total:'جمع',note:'یادداشت',why:'دلیل تغییر',boat:'قایق',ownerPct:'سهم مالک ٪',capShare:'سهم ناخدا',bonus:'پاداش ناخدا (سهم از مالک)',cur:'واحد پول',lang:'زبان',theme:'تم',tl:'روشن',td:'تیره',ta:'خودکار',addCrew:'افزودن',name:'نام',share:'سهم',none:'هنوز چیزی نیست',export:'خروجی CSV',backup:'پشتیبان / بازیابی',print:'چاپ / PDF',period:'دوره (YYYY یا YYYY-MM)',months:'ماه‌ها',years:'سال‌ها',byCat:'هزینه به تفکیک دسته',expCats:'دسته‌های هزینه و واحد پیش‌فرض',addCat:'افزودن دسته',addBoat:'افزودن قایق',port:'بندر',ownerName:'نام مالک',copy:'کپی',load:'بارگذاری داده',sure:'مطمئنید؟',all:'جمع کل',payAmt:'مبلغ',close:'بستن',draft:'پیش‌نویس ذخیره‌نشده',cont:'ادامه',discard:'حذف پیش‌نویس',clear:'پاک کردن مقدار',debts:'بدهی‌ها',newDebt:'ثبت بدهی / پیش‌برداشت',debtor:'بدهکار',lender:'طلبکار',role:'نقش طلبکار',rBroker:'خریدار ماهی (دلال)',rOther:'سایر',when:'تاریخ و ساعت',reason:'دلیل',proofTxt:'مدرک متنی (پیام، توضیح…)',addImg:'افزودن اسکرین‌شات / عکس',remain:'باقی‌مانده',openD:'باز',allD:'همه',settle:'ثبت تسویه / تغییر وضعیت',kind:'نوع',k_other:'پرداخت از راه دیگر',k_forgive:'بخشیده شد',k_note:'فقط افزودن مدرک',record:'ثبت',deduct:'کسر',owes:'بدهی باز',need:'بدهکار، طلبکار، مبلغ و دلیل الزامی است',lenderSum:'طلب هر نفر',totOpen:'جمع بدهی‌های باز',hasDebt:'این نفر بدهی باز دارد',amtOpt:'مبلغ (خالی = همه باقی‌مانده)',tplDed:'کسر از پرداخت سفر {d}: بدهی به {l} از تاریخ {a} بابت «{w}»',tplRev:'برگشت کسر (سفر {d} حذف شد)',payDed:'کسر برای بدهی به {l}: {w}'},
+en:{trips:'Trips',reports:'Reports',crew:'Crew',settings:'Settings',newTrip:'New trip',date:'Date',from:'From',to:'To',income:'Fish income',fish:'Fish types',fishType:'Fish type',kg:'Weight (kg)',pricePerKg:'Price per kg',addFish:'Add fish',fishTotal:'Total fish income',expenses:'Expenses',net:'Net profit',owner:'Boat owner',captain:'Captain',worker:'Crew',earned:'Earned',paid:'Paid',balance:'Balance',pay:'Pay',save:'Save',del:'Delete',back:'Back',edited:'Edited',cat:'Category',qty:'Qty',unit:'Unit',price:'Unit price',total:'Total',note:'Notes',why:'Reason for change',boat:'Boat',ownerPct:'Owner share %',capShare:'Captain shares',bonus:'Captain bonus (shares from owner)',cur:'Currency',lang:'Language',theme:'Theme',tl:'Light',td:'Dark',ta:'Auto',addCrew:'Add',name:'Name',share:'Shares',none:'Nothing yet',export:'Export CSV',backup:'Backup / restore',print:'Print / PDF',period:'Period (YYYY or YYYY-MM)',months:'Months',years:'Years',byCat:'Expenses by category',expCats:'Expense categories and default units',addCat:'Add category',addBoat:'Add boat',port:'Port',ownerName:'Owner name',copy:'Copy',load:'Load data',sure:'Sure?',all:'Totals',payAmt:'Amount',close:'Close',draft:'Unsaved draft',cont:'Continue',discard:'Discard draft',clear:'Clear values',debts:'Debts',newDebt:'New debt / advance',debtor:'Debtor',lender:'Lender (owed to)',role:'Lender role',rBroker:'Fish buyer (broker)',rOther:'Other',when:'Date & time',reason:'Reason',proofTxt:'Proof text (message, note…)',addImg:'Add screenshot / photo',remain:'Remaining',openD:'Open',allD:'All',settle:'Record settlement / status change',kind:'Type',k_other:'Paid another way',k_forgive:'Forgiven',k_note:'Add evidence only',record:'Record',deduct:'Deduct',owes:'Open debt',need:'Debtor, lender, amount and reason are required',lenderSum:'Owed to each lender',totOpen:'Total open debt',hasDebt:'This person has an open debt',amtOpt:'Amount (empty = all remaining)',tplDed:'Deducted from the payment of trip {d}: owed to {l} since {a}, reason: {w}',tplRev:'Deduction reversed (trip {d} was deleted)',payDed:'Deducted for debt to {l}: {w}'},
+ar:{trips:'الرحلات',reports:'التقارير',crew:'الطاقم',settings:'الإعدادات',newTrip:'رحلة جديدة',date:'التاريخ',from:'من',to:'إلى',income:'دخل السمك',fish:'أنواع السمك',fishType:'نوع السمك',kg:'الوزن (كغ)',pricePerKg:'سعر الكيلو',addFish:'إضافة سمك',fishTotal:'إجمالي دخل السمك',expenses:'المصروفات',net:'صافي الربح',owner:'مالك القارب',captain:'القبطان',worker:'الطاقم',earned:'المستحق',paid:'المدفوع',balance:'المتبقي',pay:'دفع',save:'حفظ',del:'حذف',back:'رجوع',edited:'معدّل',cat:'الفئة',qty:'الكمية',unit:'الوحدة',price:'سعر الوحدة',total:'الإجمالي',note:'ملاحظات',why:'سبب التعديل',boat:'القارب',ownerPct:'حصة المالك ٪',capShare:'حصص القبطان',bonus:'مكافأة القبطان (حصص من المالك)',cur:'العملة',lang:'اللغة',theme:'المظهر',tl:'فاتح',td:'داكن',ta:'تلقائي',addCrew:'إضافة',name:'الاسم',share:'الحصص',none:'لا شيء بعد',export:'تصدير CSV',backup:'نسخ احتياطي / استعادة',print:'طباعة / PDF',period:'الفترة (YYYY أو YYYY-MM)',months:'الأشهر',years:'السنوات',byCat:'المصروفات حسب الفئة',expCats:'فئات المصروفات والوحدات الافتراضية',addCat:'إضافة فئة',addBoat:'إضافة قارب',port:'الميناء',ownerName:'اسم المالك',copy:'نسخ',load:'تحميل البيانات',sure:'متأكد؟',all:'الإجمالي',payAmt:'المبلغ',close:'إغلاق',draft:'مسودة غير محفوظة',cont:'متابعة',discard:'حذف المسودة',clear:'مسح القيم',debts:'الديون',newDebt:'دين / سلفة جديدة',debtor:'المدين',lender:'الدائن',role:'دور الدائن',rBroker:'مشتري السمك (وسيط)',rOther:'آخر',when:'التاريخ والوقت',reason:'السبب',proofTxt:'نص الإثبات (رسالة، ملاحظة…)',addImg:'إضافة لقطة شاشة / صورة',remain:'المتبقي',openD:'مفتوحة',allD:'الكل',settle:'تسجيل تسوية / تغيير الحالة',kind:'النوع',k_other:'سُدّد بطريقة أخرى',k_forgive:'تم الإعفاء',k_note:'إضافة إثبات فقط',record:'تسجيل',deduct:'خصم',owes:'دين مفتوح',need:'المدين والدائن والمبلغ والسبب مطلوبة',lenderSum:'المستحق لكل دائن',totOpen:'إجمالي الديون المفتوحة',hasDebt:'لدى هذا الشخص دين مفتوح',amtOpt:'المبلغ (فارغ = كل المتبقي)',tplDed:'خُصم من دفعة رحلة {d}: دين لـ {l} منذ {a}، السبب: {w}',tplRev:'أُلغي الخصم (حُذفت رحلة {d})',payDed:'خصم لسداد دين لـ {l}: {w}'},
+tr:{trips:'Seferler',reports:'Raporlar',crew:'Mürettebat',settings:'Ayarlar',newTrip:'Yeni sefer',date:'Tarih',from:'Başlangıç',to:'Bitiş',income:'Balık geliri',fish:'Balık türleri',fishType:'Balık türü',kg:'Miktar (kg)',pricePerKg:'Kg fiyatı',addFish:'Balık ekle',fishTotal:'Toplam balık geliri',expenses:'Giderler',net:'Net kâr',owner:'Tekne sahibi',captain:'Kaptan',worker:'Mürettebat',earned:'Hak ediş',paid:'Ödenen',balance:'Kalan',pay:'Öde',save:'Kaydet',del:'Sil',back:'Geri',edited:'Düzenlendi',cat:'Kategori',qty:'Miktar',unit:'Birim',price:'Birim fiyat',total:'Toplam',note:'Notlar',why:'Değişiklik nedeni',boat:'Tekne',ownerPct:'Sahip payı %',capShare:'Kaptan payı',bonus:'Kaptan primi (sahipten pay)',cur:'Para birimi',lang:'Dil',theme:'Tema',tl:'Açık',td:'Koyu',ta:'Otomatik',addCrew:'Ekle',name:'Ad',share:'Paylar',none:'Henüz yok',export:'CSV dışa aktar',backup:'Yedekle / geri yükle',print:'Yazdır / PDF',period:'Dönem (YYYY veya YYYY-AA)',months:'Aylar',years:'Yıllar',byCat:'Kategoriye göre giderler',expCats:'Gider kategorileri ve varsayılan birimler',addCat:'Kategori ekle',addBoat:'Tekne ekle',port:'Liman',ownerName:'Sahip adı',copy:'Kopyala',load:'Veriyi yükle',sure:'Emin misin?',all:'Genel toplam',payAmt:'Tutar',close:'Kapat',draft:'Kaydedilmemiş taslak',cont:'Devam',discard:'Taslağı sil',clear:'Değerleri temizle',debts:'Borçlar',newDebt:'Yeni borç / avans',debtor:'Borçlu',lender:'Alacaklı',role:'Alacaklı rolü',rBroker:'Balık alıcısı (komisyoncu)',rOther:'Diğer',when:'Tarih ve saat',reason:'Neden',proofTxt:'Kanıt metni (mesaj, not…)',addImg:'Ekran görüntüsü / fotoğraf ekle',remain:'Kalan',openD:'Açık',allD:'Tümü',settle:'Kapatma / durum değişikliği kaydet',kind:'Tür',k_other:'Başka yolla ödendi',k_forgive:'Bağışlandı',k_note:'Sadece kanıt ekle',record:'Kaydet',deduct:'Düş',owes:'Açık borç',need:'Borçlu, alacaklı, tutar ve neden zorunlu',lenderSum:'Alacaklı bazında',totOpen:'Toplam açık borç',hasDebt:'Bu kişinin açık borcu var',amtOpt:'Tutar (boş = kalanın tamamı)',tplDed:'{d} seferi ödemesinden düşüldü: {l} kişisine {a} tarihinden beri borç, neden: {w}',tplRev:'Kesinti geri alındı ({d} seferi silindi)',payDed:'{l} borcu için düşüldü: {w}'}};
 const LN={fa:'فارسی',en:'English',ar:'العربية',tr:'Türkçe'};
 const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const uid=()=>Math.random().toString(36).slice(2,9),n=v=>parseFloat(v)||0,K='oceanledger.v1';
@@ -60,13 +62,15 @@ const DC=()=>[{n:'ماچله',u:'پلاستیک'},{n:'جیم',u:'کیلو'},{n:'
 const DB=()=>({id:'b1',name:'قایق ۱',port:'',owner:'',op:50,cs:1,bs:1});
 let S=null;try{S=JSON.parse(localStorage.getItem(K))}catch(e){}
 S=S||{v:2,set:{lang:'fa',theme:'light',cur:'تومان',cats:DC()},boats:[DB()],crew:[],trips:[],draft:null,edit:false};
+S.debts=S.debts||[];
 if(S.v!==2){S.v=2;S.set.lang='fa';S.set.theme='light';S.set.cur='تومان';S.set.cats=DC();S.boats.forEach(b=>{b.bs=1;delete b.bonus;if(b.name==='Boat 1')b.name='قایق ۱'});S.trips.forEach(x=>{x.fish=x.inc?[{id:uid(),type:'ماهی',kg:1,price:n(x.inc)}]:[];delete x.inc;x.bonus=1});S.draft=null;S.edit=false}
 const save=()=>{try{localStorage.setItem(K,JSON.stringify(S))}catch(e){}};
 const t=k=>(L[S.set.lang]||L.fa)[k]||L.fa[k]||k;
-const fmt=v=>{const c=S.set.cur,l=S.set.lang;try{if(/^[A-Za-z]{3}$/.test(c))return new Intl.NumberFormat(l,{style:'currency',currency:c.toUpperCase()}).format(v);return new Intl.NumberFormat(l,{maximumFractionDigits:0}).format(v)+' '+c}catch(e){return Math.round(v)+' '+c}};
+const fmt=v=>{v=+v||0;if(Math.abs(v)<.005)v=0;const c=S.set.cur;try{if(/^[A-Za-z]{3}$/.test(c))return '\u200E'+new Intl.NumberFormat('en-US',{style:'currency',currency:c.toUpperCase()}).format(v);return '\u200E'+new Intl.NumberFormat('en-US',{maximumFractionDigits:0}).format(v)+' '+c}catch(e){return Math.round(v)+' '+c}};
 const bname=id=>(S.boats.find(b=>b.id===id)||{name:'?'}).name;
 const today=()=>new Date(Date.now()-new Date().getTimezoneOffset()*6e4).toISOString().slice(0,10);
 let view='trips',draft=S.draft||null,armed='',flt={from:'',to:''},rp='';
+let df=null,sf={},sopen='',dflt='open';
 const fishTot=x=>(x.fish||[]).reduce((a,f)=>a+n(f.kg)*n(f.price),0);
 const catNames=d=>[...new Set([...S.set.cats.map(c=>c.n),...d.ex.map(e=>e.cat)])];
 const mkEx=c=>({id:uid(),cat:c,qty:'',unit:(S.set.cats.find(x=>x.n===c)||{u:''}).u,price:'',total:'',note:'',man:false});
@@ -75,11 +79,77 @@ function calc(x){const inc=fishTot(x),exp=x.ex.reduce((a,e)=>a+n(e.total),0),net
  const p=x.mem.map(m=>{const earned=n(m.share)*u+(m.cap?bon:0),paid=x.pays.filter(q=>q.id===m.id).reduce((a,q)=>a+n(q.amt),0);return{...m,earned,paid,bal:earned-paid}});
  return{inc,exp,net,own,pool,p}}
 
+/* ===== numbers: thousands separators (1,000,000) ===== */
+const nz=s=>String(s??'').replace(/[۰-۹]/g,c=>c.charCodeAt(0)-1776).replace(/[٠-٩]/g,c=>c.charCodeAt(0)-1632).replace(/٫/g,'.').replace(/[٬،]/g,',');
+const gp=s=>{s=nz(s).replace(/[^\d.]/g,'');const i=s.indexOf('.');let a=i<0?s:s.slice(0,i),b=i<0?'':'.'+s.slice(i+1).replace(/\./g,'');a=a.replace(/^0+(?=\d)/,'').replace(/\B(?=(\d{3})+(?!\d))/g,',');return a+b};
+const pn=s=>n(gp(s).replace(/,/g,''));
+function fixNum(el){const p=el.selectionStart==null?el.value.length:el.selectionStart,L=el.value.slice(0,p).replace(/[^\d.٠-٩۰-۹٫]/g,'').length,f=gp(el.value);if(f===el.value)return;el.value=f;let c=0,i=0;while(i<f.length&&c<L){if(f[i]!==',')c++;i++}try{el.setSelectionRange(i,i)}catch(e){}}
+
+/* ===== proof images: stored in IndexedDB (not localStorage), shrunk first ===== */
+const IMG={};
+const idb=new Promise(r=>{try{const q=indexedDB.open('oceanledger-proofs',1);q.onupgradeneeded=()=>q.result.createObjectStore('p');q.onsuccess=()=>r(q.result);q.onerror=()=>r(null)}catch(e){r(null)}});
+const idbPut=(k,v)=>idb.then(d=>d?new Promise(r=>{const x=d.transaction('p','readwrite');x.objectStore('p').put(v,k);x.oncomplete=()=>r(1);x.onerror=()=>r(0)}):0);
+const idbDel=k=>idb.then(d=>{if(d)d.transaction('p','readwrite').objectStore('p').delete(k)});
+const idbAll=()=>idb.then(d=>d?new Promise(r=>{const o={},q=d.transaction('p').objectStore('p').openCursor();q.onsuccess=()=>{const c=q.result;if(c){o[c.key]=c.value;c.continue()}else r(o)};q.onerror=()=>r(o)}):{});
+const shrink=f=>new Promise((res,rej)=>{const u=URL.createObjectURL(f),i=new Image();i.onload=()=>{const k=Math.min(1,1280/Math.max(i.width,i.height)),c=document.createElement('canvas'),x=c.getContext('2d');c.width=Math.round(i.width*k);c.height=Math.round(i.height*k);x.fillStyle='#fff';x.fillRect(0,0,c.width,c.height);x.drawImage(i,0,0,c.width,c.height);URL.revokeObjectURL(u);res(c.toDataURL('image/jpeg',.72))};i.onerror=rej;i.src=u});
+async function addImgs(sc,did,files){const tg=sc==='df'?df:sf[did];if(!tg)return;for(const f of files){try{const u=await shrink(f),id=uid()+uid();IMG[id]=u;await idbPut(id,u);tg.im.push(id)}catch(e){}}render()}
+
+/* ===== debts ===== */
+const tp=(k,o)=>t(k).replace(/\{(\w+)\}/g,(_,x)=>esc(o[x]??''));
+const nowLocal=()=>new Date(Date.now()-new Date().getTimezoneOffset()*6e4).toISOString().slice(0,16);
+const fmtAt=s=>String(s||'').replace('T',' ');
+const dRem=g=>g.amt-g.log.reduce((a,l)=>a+n(l.amt),0);
+const owedBy=id=>S.debts.filter(g=>g.who===id).reduce((a,g)=>a+Math.max(0,dRem(g)),0);
+const newDf=()=>({who:S.crew[0]?S.crew[0].id:'',to:'',role:'captain',amt:'',at:nowLocal(),why:'',tx:'',im:[]});
+const sfNew=()=>({k:'other',amt:'',at:nowLocal(),why:'',tx:'',im:[]});
+const roleName=r=>({captain:t('captain'),owner:t('owner'),broker:t('rBroker')}[r]||t('rOther'));
+const logText=(g,l)=>l.k==='deduct'?tp('tplDed',{d:l.td,l:g.to,a:fmtAt(g.at),w:g.why}):l.k==='rev'?tp('tplRev',{d:l.td}):`${t('k_'+l.k)}${l.why?': '+esc(l.why):''}`;
+const payTxt=q=>{if(!q.debt)return'';const g=S.debts.find(x=>x.id===q.debt);return ' — ↳ '+tp('payDed',{l:q.to,w:g?g.why:''})};
+const revDebts=d=>S.debts.forEach(g=>g.log.filter(l=>l.k==='deduct'&&l.trip===d.id&&!l.rv).forEach(l=>{l.rv=1;g.log.push({id:uid(),k:'rev',amt:-l.amt,at:nowLocal(),trip:d.id,td:d.date})}));
+const dBadge=id=>{if(!S.debts.some(g=>g.who===id))return'';const o=owedBy(id);return `<span class="${o>.005?'bad':'ok'}">${t('debts')}: ${o>.005?fmt(-o):'0 ✓'}</span>`};
+const dcsv=()=>{const D=[[t('debtor'),t('lender'),t('role'),t('when'),t('payAmt'),t('remain'),t('reason')]],G=[[t('debtor'),t('lender'),t('when'),t('kind'),t('payAmt'),t('reason')]];S.debts.forEach(g=>{D.push([g.wn,g.to,g.role,g.at,g.amt,Math.round(dRem(g)),g.why]);g.log.forEach(l=>G.push([g.wn,g.to,l.at,l.k,l.amt,l.k==='deduct'?'trip '+l.td:(l.why||'')]))});return[D,G]};
+
+const debtBox=p=>{const gs=S.debts.filter(g=>g.who===p.id&&dRem(g)>.005);if(!gs.length)return'';
+ return `<div class="card" style="border-color:var(--bad)"><b class="bad">${t('owes')}: ${fmt(-gs.reduce((a,g)=>a+dRem(g),0))}</b>${gs.map(g=>{const cap=Math.min(dRem(g),Math.max(p.bal,0));return `<div class="mu">→ ${esc(g.to)} · ${fmtAt(g.at)} · ${esc(g.why)} · ${t('remain')}: ${fmt(dRem(g))}</div>${cap>.005?`<div class="row"><input id="dd-${g.id}" class="num" inputmode="decimal" placeholder="${t('deduct')}: ${gp(Math.round(cap))}"><button data-act="ded" data-did="${g.id}">${t('deduct')}</button></div>`:''}`}).join('')}</div>`};
+
+const thumbs=(ids,rm,sc,did)=>ids&&ids.length?`<div class="chips">${ids.map(i=>`<span class="thw"><img class="th" ${IMG[i]?`src="${IMG[i]}"`:''} data-act="zoom" data-iid="${i}">${rm?`<button data-act="rmimg" data-sc="${sc}" data-did="${did||''}" data-iid="${i}">✕</button>`:''}</span>`).join('')}</div>`:'';
+const evHtml=(sc,o,did)=>`<label>${t('proofTxt')}<textarea data-${sc}="tx"${did?` data-did="${did}"`:''} style="height:64px;font:inherit">${esc(o.tx)}</textarea></label><div class="row"><label>${t('addImg')}<input type="file" accept="image/*" multiple data-img="${sc}"${did?` data-did="${did}"`:''}></label></div>${thumbs(o.im,true,sc,did)}`;
+const evView=ev=>ev&&(ev.tx||(ev.im||[]).length)?`${ev.tx?`<div class="mu">📎 ${esc(ev.tx)}</div>`:''}${thumbs(ev.im)}`:'';
+
+const settleHtml=(g,o)=>{const r=dRem(g),ks=r>.005?['other','forgive','note']:['note'];if(!ks.includes(o.k))o.k=ks[0];sf[g.id]=o;const a=f=>`data-sf="${f}" data-did="${g.id}"`;
+ return `<div class="card"><div class="grid"><label>${t('kind')}<select ${a('k')}>${ks.map(k=>`<option value="${k}" ${k===o.k?'selected':''}>${t('k_'+k)}</option>`).join('')}</select></label>
+${o.k!=='note'?`<label>${t('amtOpt')}<input class="num" inputmode="decimal" ${a('amt')} value="${gp(o.amt)}" placeholder="${gp(Math.round(r))}"></label>`:''}
+<label>${t('when')}<input type="datetime-local" ${a('at')} value="${esc(o.at)}"></label></div>
+<label>${t('reason')}<input ${a('why')} value="${esc(o.why)}"></label>${evHtml('sf',o,g.id)}
+<div class="row"><button class="pr" data-act="record" data-did="${g.id}">${t('record')}</button></div></div>`};
+
+const debtCard=g=>{const r=dRem(g),o=sf[g.id]||sfNew(),op=r>.005;
+ return `<div class="card" style="border-inline-start:4px solid var(${op?'--bad':'--ok'})"><div class="kv"><b>${esc(g.wn)} → ${esc(g.to)}</b><b class="${op?'bad':'ok'}">${op?fmt(-r):'✓ 0'}</b></div>
+<div class="mu">${roleName(g.role)} · ${fmtAt(g.at)} · ${fmt(g.amt)}</div><div>${esc(g.why)}</div>${evView(g.ev)}
+${g.log.map(l=>`<div class="mu">• ${fmtAt(l.at)}${n(l.amt)?' — '+fmt(l.amt):''} — ${logText(g,l)}</div>${evView(l.ev)}`).join('')}
+<div class="row"><button data-act="sopen" data-did="${g.id}">${t('settle')}</button></div>
+${sopen===g.id?settleHtml(g,o):''}</div>`};
+
+function dbHtml(){if(!df)df=newDf();if(!S.crew.find(c=>c.id===df.who))df.who=S.crew[0]?S.crew[0].id:'';
+ const op=S.debts.filter(g=>dRem(g)>.005),shown=(dflt==='all'?S.debts:op).slice().sort((a,b)=>b.at.localeCompare(a.at)),by={};op.forEach(g=>by[g.to]=(by[g.to]||0)+dRem(g));
+ const lend=[...new Set([...S.debts.map(g=>g.to),...S.boats.map(b=>b.owner),...S.crew.map(c=>c.name)].filter(Boolean))],a=f=>`data-df="${f}"`;
+ return `${op.length?`<div class="card"><div class="kv big"><span>${t('totOpen')}</span><b class="bad">${fmt(op.reduce((x,g)=>x+dRem(g),0))}</b></div><div class="mu">${t('lenderSum')}</div>${Object.keys(by).map(k=>`<div class="kv"><span>${esc(k)}</span><b>${fmt(by[k])}</b></div>`).join('')}</div>`:''}
+<div class="card"><b>${t('newDebt')}</b>${S.crew.length?`<datalist id="lnd">${lend.map(x=>`<option value="${esc(x)}">`).join('')}</datalist>
+<div class="grid"><label>${t('debtor')}<select ${a('who')}>${S.crew.map(c=>`<option value="${c.id}" ${c.id===df.who?'selected':''}>${esc(c.name)}</option>`).join('')}</select></label>
+<label>${t('lender')}<input list="lnd" ${a('to')} value="${esc(df.to)}"></label>
+<label>${t('role')}<select ${a('role')}>${['captain','owner','broker','other'].map(r=>`<option value="${r}" ${r===df.role?'selected':''}>${roleName(r)}</option>`).join('')}</select></label>
+<label>${t('payAmt')}<input class="num" inputmode="decimal" ${a('amt')} value="${gp(df.amt)}"></label>
+<label>${t('when')}<input type="datetime-local" ${a('at')} value="${esc(df.at)}"></label></div>
+<label>${t('reason')}<input ${a('why')} value="${esc(df.why)}"></label>${evHtml('df',df)}
+<div class="row"><button class="pr" data-act="adddebt">${t('save')}</button></div>`:`<p class="mu">${t('none')} → ${t('crew')}</p>`}</div>
+<div class="chips"><button class="chip ${dflt==='open'?'on':''}" data-act="dfl" data-v="open">${t('openD')} (${op.length})</button><button class="chip ${dflt==='all'?'on':''}" data-act="dfl" data-v="all">${t('allD')} (${S.debts.length})</button></div>
+${shown.map(debtCard).join('')||`<p class="mu">${t('none')}</p>`}`}
+
 function render(){const s=S.set,r=document.documentElement;r.lang=s.lang;r.dir=(s.lang==='fa'||s.lang==='ar')?'rtl':'ltr';
  s.theme?r.dataset.theme=s.theme:delete r.dataset.theme;
  const ed=draft&&S.edit&&view==='trips';
- $('#nav').innerHTML=['trips','reports','crew','settings'].map(v=>`<button class="${v===view?'on':''}" data-act="nav" data-v="${v}">${t(v)}</button>`).join('');
- $('#main').innerHTML=ed?edHtml():view==='trips'?trHtml():view==='reports'?rpHtml():view==='crew'?crHtml():stHtml();
+ $('#nav').innerHTML=['trips','reports','crew','debts','settings'].map(v=>`<button class="${v===view?'on':''}" data-act="nav" data-v="${v}">${t(v)}</button>`).join('');
+ $('#main').innerHTML=ed?edHtml():view==='trips'?trHtml():view==='reports'?rpHtml():view==='crew'?crHtml():view==='debts'?dbHtml():stHtml();
  if(ed)upd()}
 
 const list=()=>S.trips.filter(x=>(!flt.from||x.date>=flt.from)&&(!flt.to||x.date<=flt.to)).sort((a,b)=>b.date.localeCompare(a.date));
@@ -88,7 +158,7 @@ ${draft?`<div class="card" style="border-color:var(--ac)"><b>✎ ${t('draft')}</
 <div class="row"><button data-act="csv">${t('export')}</button></div>
 ${l.map(x=>{const c=calc(x),due=c.p.reduce((a,p)=>a+Math.max(0,p.bal),0);return `<div class="card tap" data-act="open" data-id="${x.id}"><b>${x.date}</b> — ${esc(bname(x.boat))}<div class="mu">${t('income')}: ${fmt(c.inc)} | ${t('net')}: ${fmt(c.net)}</div>${due>.005?`<div class="bad">${t('balance')}: ${fmt(due)}</div>`:'<div class="ok">✓</div>'}</div>`}).join('')||`<p class="mu">${t('none')}</p>`}`}
 
-function edHtml(){const d=draft,num=(v,a)=>`<input type="number" step="any" inputmode="decimal" ${a} value="${esc(v)}">`,names=catNames(d);
+function edHtml(){const d=draft,num=(v,a)=>`<input class="num" inputmode="decimal" ${a} value="${gp(v)}">`,names=catNames(d);
  if(!d.sel||!names.includes(d.sel))d.sel=names[0];
  let ei=d.ex.findIndex(e=>e.cat===d.sel);if(ei<0&&d.sel){d.ex.push(mkEx(d.sel));ei=d.ex.length-1}
  const e=d.ex[ei],a=f=>`data-e="${ei}" data-f="${f}"`,types=[...new Set(S.trips.flatMap(x=>x.fish||[]).concat(d.fish).map(f=>f.type).filter(Boolean))];
@@ -119,8 +189,8 @@ function upd(){const d=draft,c=calc(d),kv=(a,b,x='')=>`<div class="kv ${x}"><spa
 $('#sum').innerHTML=`<div class="card">${kv(t('income'),fmt(c.inc))}${kv(t('expenses'),fmt(c.exp))}${kv(t('net'),fmt(c.net),'big')}${kv(t('owner')+' ('+n(d.op)+'%)',fmt(c.own))}</div>`+
 c.p.map(p=>`<div class="card"><b>${esc(p.name)}</b> <span class="mu">${p.cap?t('captain'):t('worker')} × ${p.share}</span> ${p.bal<=.005&&p.earned>0?'<span class="ok">✓</span>':''}
 ${kv(t('earned'),fmt(p.earned))}${kv(t('paid'),fmt(p.paid))}${kv(t('balance'),fmt(p.bal))}
-<div class="row"><input id="pa-${p.id}" type="number" step="any" placeholder="${t('payAmt')}: ${p.bal>0?Math.round(p.bal):''}"><button data-act="pay" data-id="${p.id}">${t('pay')}</button></div>
-${d.pays.filter(q=>q.id===p.id).map(q=>`<div class="mu">${new Date(q.at).toLocaleDateString()} — ${fmt(n(q.amt))}</div>`).join('')}</div>`).join('')}
+<div class="row"><input id="pa-${p.id}" class="num" inputmode="decimal" placeholder="${t('payAmt')}: ${p.bal>0?gp(Math.round(p.bal)):''}"><button data-act="pay" data-id="${p.id}">${t('pay')}</button></div>
+${d.pays.filter(q=>q.id===p.id).map(q=>`<div class="mu">${new Date(q.at).toLocaleDateString()} — ${fmt(n(q.amt))}${payTxt(q)}</div>`).join('')}${debtBox(p)}</div>`).join('')}
 
 function commit(back){const d=draft;if(!d.date)return false;
  d.ex=d.ex.filter(e=>n(e.total)!==0||e.orig!==undefined||e.note);d.fish=d.fish.filter(f=>f.type||n(f.kg)||n(f.price));
@@ -137,11 +207,11 @@ function rpHtml(){const l=S.trips.filter(x=>x.date.startsWith(rp)),M={},Y={},P={
 <div class="card sc"><table>${head}${row(t('all'),T)}</table></div>
 <h3>${t('months')}</h3><div class="card sc"><table>${head}${Object.keys(M).sort().map(k=>row(k,M[k])).join('')}</table></div>
 <h3>${t('years')}</h3><div class="card sc"><table>${head}${Object.keys(Y).sort().map(k=>row(k,Y[k])).join('')}</table></div>
-<h3>${t('crew')}</h3><div class="card sc"><table><tr><th></th><th>${t('earned')}</th><th>${t('paid')}</th><th>${t('balance')}</th></tr>${Object.values(P).map(r=>`<tr><td>${esc(r.name)}</td><td>${fmt(r.e)}</td><td>${fmt(r.p)}</td><td>${fmt(r.e-r.p)}</td></tr>`).join('')}</table></div>
+<h3>${t('crew')}</h3><div class="card sc"><table><tr><th></th><th>${t('earned')}</th><th>${t('paid')}</th><th>${t('balance')}</th><th>${t('debts')}</th></tr>${Object.entries(P).map(([id,r])=>`<tr><td>${esc(r.name)}</td><td>${fmt(r.e)}</td><td>${fmt(r.p)}</td><td>${fmt(r.e-r.p)}</td><td>${owedBy(id)>.005?fmt(-owedBy(id)):'0'}</td></tr>`).join('')}</table></div>
 <h3>${t('byCat')}</h3><div class="card sc"><table>${Object.keys(C).map(k=>`<tr><td>${esc(k)}</td><td>${fmt(C[k])}</td></tr>`).join('')}</table></div>`}
 
 const crHtml=()=>`<div class="row"><label>${t('name')}<input id="cn"></label><button class="pr" data-act="addcrew">${t('addCrew')}</button></div>
-${S.crew.map(c=>`<div class="card row"><b style="flex:1">${esc(c.name)}</b><button class="bad" data-act="rmcrew" data-id="${c.id}">${armed===c.id?t('sure'):t('del')}</button></div>`).join('')||`<p class="mu">${t('none')}</p>`}`;
+${S.crew.map(c=>`<div class="card row"><b style="flex:1">${esc(c.name)}</b>${dBadge(c.id)}<button class="bad" data-act="rmcrew" data-id="${c.id}">${armed===c.id?t('sure'):t('del')}</button></div>`).join('')||`<p class="mu">${t('none')}</p>`}`;
 
 function stHtml(){const s=S.set;return `<div class="card"><div class="grid">
 <label>${t('lang')}<select data-lang="1">${Object.keys(LN).map(k=>`<option value="${k}" ${k===s.lang?'selected':''}>${LN[k]}</option>`).join('')}</select></label>
@@ -159,7 +229,7 @@ ${S.boats.map((b,i)=>{const a=f=>`data-bo="${i}" data-f="${f}"`;return `<div cla
 function box(title,text,onload){const b=$('#box');b.style.display='flex';b.innerHTML=`<div class="card"><b>${esc(title)}</b><textarea id="bx"></textarea><div class="row"><button data-act="cp">${t('copy')}</button><button data-act="dl">⬇</button>${onload?`<button class="pr" data-act="ld">${t('load')}</button>`:''}<button data-act="cl">${t('close')}</button></div></div>`;$('#bx').value=text;box.f=onload}
 function csv(){const q=r=>r.map(c=>'"'+String(c).replace(/"/g,'""')+'"').join(','),R=[[t('date'),t('boat'),t('income'),t('expenses'),t('net'),t('owner'),t('name'),t('worker'),t('earned'),t('paid'),t('balance')]],E=[[t('date'),t('cat'),t('qty'),t('unit'),t('price'),t('total'),t('note')]],F=[[t('date'),t('fishType'),t('kg'),t('pricePerKg'),t('total')]];
  list().forEach(x=>{const c=calc(x),b=[x.date,bname(x.boat),c.inc,c.exp,Math.round(c.net),Math.round(c.own)];if(!c.p.length)R.push(b);c.p.forEach(p=>R.push([...b,p.name,p.cap?t('captain'):t('worker'),Math.round(p.earned),Math.round(p.paid),Math.round(p.bal)]));x.ex.forEach(e=>E.push([x.date,e.cat,e.qty,e.unit,e.price,n(e.total),e.note]));(x.fish||[]).forEach(f=>F.push([x.date,f.type,f.kg,f.price,n(f.kg)*n(f.price)]))});
- box('CSV',[R,F,E].map(r=>r.map(q).join('\n')).join('\n\n'))}
+ box('CSV',[R,F,E,...dcsv()].map(r=>r.map(q).join('\n')).join('\n\n'))}
 
 document.addEventListener('click',ev=>{const b=ev.target.closest('[data-act]');if(!b)return;const a=b.dataset.act,d=draft;
  if(a==='nav'){view=b.dataset.v}
@@ -173,38 +243,60 @@ document.addEventListener('click',ev=>{const b=ev.target.closest('[data-act]');i
  else if(a==='addfish')d.fish.push({id:uid(),type:'',kg:'',price:''});
  else if(a==='rmfish')d.fish.splice(+b.dataset.i,1);
  else if(a==='save'){if(!commit(true))return}
- else if(a==='del'){if(armed===d.id){S.trips=S.trips.filter(x=>x.id!==d.id);draft=null;S.edit=false;armed=''}else armed=d.id}
- else if(a==='pay'){const c=calc(d).p.find(p=>p.id===b.dataset.id),v=n($('#pa-'+c.id).value)||c.bal;if(v<=0)return;d.pays.push({id:c.id,amt:v,at:Date.now()});commit(false)}
+ else if(a==='del'){if(armed===d.id){revDebts(d);S.trips=S.trips.filter(x=>x.id!==d.id);draft=null;S.edit=false;armed=''}else armed=d.id}
+ else if(a==='pay'){const c=calc(d).p.find(p=>p.id===b.dataset.id),v=pn($('#pa-'+c.id).value)||c.bal;if(v<=0)return;d.pays.push({id:c.id,amt:v,at:Date.now()});commit(false)}
  else if(a==='print')window.print();
  else if(a==='csv'){csv();return}
  else if(a==='addcrew'){const v=$('#cn').value.trim();if(!v)return;S.crew.push({id:uid(),name:v})}
- else if(a==='rmcrew'){if(armed===b.dataset.id){S.crew=S.crew.filter(c=>c.id!==armed);armed=''}else armed=b.dataset.id}
+ else if(a==='rmcrew'){if(owedBy(b.dataset.id)>.005){alert(t('hasDebt'));return}if(armed===b.dataset.id){S.crew=S.crew.filter(c=>c.id!==armed);armed=''}else armed=b.dataset.id}
  else if(a==='addboat')S.boats.push({...DB(),id:uid(),name:'قایق '+(S.boats.length+1)});
  else if(a==='addcat')S.set.cats.push({n:'',u:''});
  else if(a==='rmcat')S.set.cats.splice(+b.dataset.i,1);
  else if(a==='theme')S.set.theme=S.set.theme==='light'?'dark':S.set.theme==='dark'?'':'light';
- else if(a==='bk'){box(t('backup'),JSON.stringify(S),txt=>{S=JSON.parse(txt);save();draft=S.draft||null;$('#box').style.display='none';render()});return}
+ else if(a==='bk'){box(t('backup'),JSON.stringify({...S,_im:IMG}),txt=>{S=JSON.parse(txt);const im=S._im||{};delete S._im;S.debts=S.debts||[];Object.assign(IMG,im);Object.keys(im).forEach(k=>idbPut(k,im[k]));save();draft=S.draft||null;df=null;sf={};$('#box').style.display='none';render()});return}
  else if(a==='cp'){$('#bx').select();try{document.execCommand('copy')}catch(e){}return}
  else if(a==='dl'){try{const u=URL.createObjectURL(new Blob(['\ufeff'+$('#bx').value],{type:'text/plain'})),l=document.createElement('a');l.href=u;l.download='oceanledger-'+today()+'.txt';l.click()}catch(e){}return}
  else if(a==='ld'){try{box.f($('#bx').value)}catch(e){$('#bx').value='Invalid data'}return}
  else if(a==='cl'){$('#box').style.display='none';return}
+ else if(a==='dfl'){dflt=b.dataset.v}
+ else if(a==='zoom'){const bx=$('#box'),u=IMG[b.dataset.iid];bx.style.display='flex';bx.innerHTML=`<div class="card"><img ${u?`src="${u}"`:''} style="width:100%;max-height:75vh;object-fit:contain;border-radius:8px"><div class="row"><button data-act="cl">${t('close')}</button></div></div>`;return}
+ else if(a==='rmimg'){const tg=b.dataset.sc==='df'?df:sf[b.dataset.did],id=b.dataset.iid;if(tg)tg.im=tg.im.filter(x=>x!==id);delete IMG[id];idbDel(id)}
+ else if(a==='adddebt'){const amt=pn(df.amt),c=S.crew.find(c=>c.id===df.who);if(!c||!df.to.trim()||amt<=0||!df.why.trim()){alert(t('need'));return}
+  S.debts.push({id:uid(),who:c.id,wn:c.name,to:df.to.trim(),role:df.role,amt,at:df.at||nowLocal(),why:df.why.trim(),ev:{tx:df.tx.trim(),im:df.im},log:[]});df=newDf()}
+ else if(a==='sopen'){sopen=sopen===b.dataset.did?'':b.dataset.did;if(sopen&&!sf[sopen])sf[sopen]=sfNew()}
+ else if(a==='record'){const g=S.debts.find(x=>x.id===b.dataset.did),o=g&&sf[g.id];if(!g||!o)return;const rem=dRem(g);let amt=0;
+  if(o.k==='note'){if(!o.tx.trim()&&!o.im.length){alert(t('need'));return}}
+  else{amt=Math.min(pn(o.amt)||rem,rem);if(amt<=.005)return;if(!o.why.trim()){alert(t('need'));return}}
+  g.log.push({id:uid(),k:o.k,amt,at:o.at||nowLocal(),why:o.why.trim(),ev:{tx:o.tx.trim(),im:o.im}});delete sf[g.id];sopen=''}
+ else if(a==='ded'){const g=S.debts.find(x=>x.id===b.dataset.did),c=d&&g&&calc(d).p.find(p=>p.id===g.who);if(!c||!d.date)return;
+  const cap=Math.min(dRem(g),Math.max(c.bal,0)),inp=$('#dd-'+g.id);let v=(inp?pn(inp.value):0)||cap;v=Math.min(v,cap);if(v<=.005)return;
+  g.log.push({id:uid(),k:'deduct',amt:v,at:nowLocal(),trip:d.id,td:d.date});d.pays.push({id:g.who,amt:v,at:Date.now(),debt:g.id,to:g.to});commit(false)}
  S.draft=draft;save();render()});
 
-document.addEventListener('input',ev=>{const el=ev.target,D=el.dataset;if(el.tagName==='SELECT'||el.type==='checkbox'||el.type==='radio')return;
- if(D.rp!==undefined){rp=el.value;return}
- if(D.s){S.set[D.s]=el.value;save();return}
- if(D.ca){S.set.cats[+D.ca][D.f]=el.value;save();return}
- if(D.bo){S.boats[+D.bo][D.f]=['op','cs','bs'].includes(D.f)?n(el.value):el.value;save();return}
+document.addEventListener('input',ev=>{const el=ev.target,D=el.dataset;if(el.tagName==='SELECT'||el.type==='checkbox'||el.type==='radio'||el.type==='file')return;
+ const nm=el.classList.contains('num');
+ if(nm){if(ev.data===','&&!el.value.includes('.')){const p=el.selectionStart;el.value=el.value.slice(0,p-1)+'.'+el.value.slice(p);try{el.setSelectionRange(p,p)}catch(e){}}fixNum(el)}
+ const v=nm?gp(el.value).replace(/,/g,''):el.value;
+ if(D.rp!==undefined){rp=v;return}
+ if(D.s){S.set[D.s]=v;save();return}
+ if(D.ca){S.set.cats[+D.ca][D.f]=v;save();return}
+ if(D.bo){S.boats[+D.bo][D.f]=['op','cs','bs'].includes(D.f)?n(v):v;save();return}
+ if(D.df){df[D.df]=v;return}
+ if(D.sf){(sf[D.did]=sf[D.did]||sfNew())[D.sf]=v;return}
+ if(el.closest('#sum'))return;
  if(!draft)return;const d=draft;
- if(D.k)d[D.k]=el.value;
- else if(D.fi!==undefined){const f=d.fish[+D.fi];f[D.f]=el.value;const o=$('#fr-'+D.fi);if(o)o.textContent=fmt(n(f.kg)*n(f.price));$('#ftot').textContent=fmt(fishTot(d))}
- else if(D.e!==undefined){const e=d.ex[+D.e],f=D.f;e[f]=el.value;
-  if(f==='total')e.man=el.value!=='';
-  if((f==='qty'||f==='price'||f==='total')&&!e.man){e.total=String(+((e.qty===''?1:n(e.qty))*n(e.price)).toFixed(2));const o=document.querySelector(`[data-e="${D.e}"][data-f="total"]`);if(o)o.value=e.total}}
- else if(D.m&&D.f==='share')d.mem.find(m=>m.id===D.m).share=el.value;
+ if(D.k)d[D.k]=v;
+ else if(D.fi!==undefined){const f=d.fish[+D.fi];f[D.f]=v;const o=$('#fr-'+D.fi);if(o)o.textContent=fmt(n(f.kg)*n(f.price));$('#ftot').textContent=fmt(fishTot(d))}
+ else if(D.e!==undefined){const e=d.ex[+D.e],f=D.f;e[f]=v;
+  if(f==='total')e.man=v!=='';
+  if((f==='qty'||f==='price'||f==='total')&&!e.man){e.total=String(+((e.qty===''?1:n(e.qty))*n(e.price)).toFixed(2));const o=document.querySelector(`[data-e="${D.e}"][data-f="total"]`);if(o)o.value=gp(e.total)}}
+ else if(D.m&&D.f==='share')d.mem.find(m=>m.id===D.m).share=v;
  S.draft=d;save();upd()});
 
-document.addEventListener('change',ev=>{const el=ev.target,D=el.dataset;
+document.addEventListener('change',ev=>{const el=ev.target,D=el.dataset,v=el.classList.contains('num')?gp(el.value).replace(/,/g,''):el.value;
+ if(D.img){addImgs(D.img,D.did,[...el.files]);el.value='';return}
+ if(D.df){df[D.df]=v;return}
+ if(D.sf){(sf[D.did]=sf[D.did]||sfNew())[D.sf]=v;if(D.sf==='k')render();return}
  if(D.flt){flt[D.flt]=el.value;render();return}
  if(D.lang){S.set.lang=el.value;save();render();return}
  if(!draft)return;const d=draft;
@@ -217,5 +309,6 @@ document.addEventListener('change',ev=>{const el=ev.target,D=el.dataset;
 
 render();
 if(/[?&]new=1/.test(location.search)){document.querySelector('[data-act="new"],[data-act="cont"]')?.click()}
+idbAll().then(o=>{Object.assign(IMG,o);try{navigator.storage&&navigator.storage.persist&&navigator.storage.persist()}catch(e){}if(Object.keys(o).length)render()});
 if('serviceWorker' in navigator&&location.protocol.startsWith('http')){let r=false;navigator.serviceWorker.addEventListener('controllerchange',()=>{if(r)return;r=true;if(window.__hadSW)location.reload()});window.__hadSW=!!navigator.serviceWorker.controller;navigator.serviceWorker.register('sw.js').catch(()=>{})}
 </script></body></html>

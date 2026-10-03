@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>OceanLedger</title>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#0d5c63">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="OceanLedger">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<style>
+:root{--bg:#eef3f1;--card:#fff;--tx:#12303a;--mu:#5d7780;--pr:#0d5c63;--pt:#fff;--ac:#e0562b;--bd:#cddbd8;--ok:#1b7f4b;--bad:#c23a2b;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0a1a1f;--card:#12292f;--tx:#e4f0ee;--mu:#8fadaa;--pr:#4cc0c0;--pt:#062024;--ac:#ff8a5c;--bd:#26434a;--ok:#4cc27f;--bad:#ef7a6c}}
+:root[data-theme="dark"]{--bg:#0a1a1f;--card:#12292f;--tx:#e4f0ee;--mu:#8fadaa;--pr:#4cc0c0;--pt:#062024;--ac:#ff8a5c;--bd:#26434a;--ok:#4cc27f;--bad:#ef7a6c}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.45 "Segoe UI",Tahoma,system-ui,sans-serif}
+header{background:var(--pr);color:var(--pt);padding:10px 14px 0;position:sticky;top:env(safe-area-inset-top,0px);z-index:5}
+h1{margin:0 0 6px;font-size:20px;letter-spacing:.3px}
+nav{display:flex;gap:2px;overflow-x:auto}
+nav button{flex:1;background:none;border:0;color:inherit;padding:9px 6px;opacity:.75;border-bottom:3px solid transparent;border-radius:0;font-weight:600}
+nav button.on{opacity:1;border-color:var(--ac)}
+main{max-width:760px;margin:0 auto;padding:12px}
+h3{margin:18px 0 8px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:10px;margin:8px 0}
+.tap{cursor:pointer;border-inline-start:4px solid var(--pr)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:end;margin:8px 0}
+label{display:flex;flex-direction:column;font-size:12px;color:var(--mu);gap:3px}
+.row>label:has(input[type=checkbox]),.row>label:has(input[type=radio]){flex-direction:row;align-items:center;font-size:15px;color:var(--tx)}
+input,select,textarea,button{font:inherit;color:var(--tx);background:var(--bg);border:1px solid var(--bd);border-radius:8px;padding:8px;min-height:38px;max-width:100%}
+input[type=checkbox],input[type=radio]{min-height:0;width:18px;height:18px}
+button{cursor:pointer;background:var(--card);font-weight:600}
+button.pr{background:var(--pr);color:var(--pt);border-color:var(--pr)}
+button.bad{color:var(--bad);border-color:var(--bad)}
+.mu{color:var(--mu);font-size:13px}.ok{color:var(--ok);font-weight:700}.bad{color:var(--bad)}
+.kv{display:flex;justify-content:space-between;padding:2px 0}
+.big{font-size:20px}
+.sc{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:13px}
+td,th{padding:5px 8px;border-bottom:1px solid var(--bd);text-align:start;white-space:nowrap}
+#box{position:fixed;inset:0;background:#0008;display:none;align-items:center;justify-content:center;padding:14px;z-index:9}
+#box .card{width:100%;max-width:560px}
+textarea{width:100%;height:200px;font:12px monospace}
+@media print{header,button,#box{display:none!important}body{background:#fff;color:#000}}
+</style></head><body>
+<header><h1>🌊 OceanLedger</h1><nav id="nav"></nav></header>
+<main id="main"></main><div id="box"></div>
+<script>
+const L={
+en:{trips:'Trips',reports:'Reports',crew:'Crew',settings:'Settings',newTrip:'New trip',date:'Date',from:'From',to:'To',income:'Fish income',expenses:'Expenses',net:'Net profit',owner:'Boat owner',captain:'Captain',worker:'Crew',earned:'Earned',paid:'Paid',balance:'Balance',pay:'Pay',save:'Save',del:'Delete',back:'Back',edited:'Edited',cat:'Category',qty:'Qty',unit:'Unit',price:'Unit price',total:'Total',note:'Notes',why:'Reason for change',addExp:'Add expense',boat:'Boat',ownerPct:'Owner share %',bonus:'Captain bonus',cur:'Currency',lang:'Language',dark:'Theme',addCrew:'Add',name:'Name',share:'Shares',none:'Nothing yet',export:'Export CSV',backup:'Backup / restore',print:'Print / PDF',period:'Period (YYYY or YYYY-MM)',months:'Months',byCat:'Expenses by category',cats:'Expense categories (comma separated)',addBoat:'Add boat',port:'Port',ownerName:'Owner name',copy:'Copy',load:'Load data',sure:'Delete?',all:'Totals',payAmt:'Amount',close:'Close',years:'Years'},
+fa:{trips:'سفرها',reports:'گزارش‌ها',crew:'خدمه',settings:'تنظیمات',newTrip:'سفر جدید',date:'تاریخ',from:'از',to:'تا',income:'درآمد فروش ماهی',expenses:'هزینه‌ها',net:'سود خالص',owner:'صاحب قایق',captain:'ناخدا',worker:'خدمه',earned:'سهم',paid:'پرداخت‌شده',balance:'مانده',pay:'پرداخت',save:'ذخیره',del:'حذف',back:'بازگشت',edited:'ویرایش‌شده',cat:'دسته',qty:'مقدار',unit:'واحد',price:'قیمت واحد',total:'جمع',note:'یادداشت',why:'دلیل تغییر',addExp:'افزودن هزینه',boat:'قایق',ownerPct:'سهم مالک ٪',bonus:'پاداش ناخدا',cur:'واحد پول',lang:'زبان',dark:'پوسته',addCrew:'افزودن',name:'نام',share:'سهم‌ها',none:'هنوز چیزی نیست',export:'خروجی CSV',backup:'پشتیبان / بازیابی',print:'چاپ / PDF',period:'دوره (YYYY یا YYYY-MM)',months:'ماه‌ها',byCat:'هزینه به تفکیک دسته',cats:'دسته‌های هزینه (با ویرگول)',addBoat:'افزودن قایق',port:'بندر',ownerName:'نام مالک',copy:'کپی',load:'بارگذاری داده',sure:'حذف شود؟',all:'جمع کل',payAmt:'مبلغ',close:'بستن',years:'سال‌ها'},
+ar:{trips:'الرحلات',reports:'التقارير',crew:'الطاقم',settings:'الإعدادات',newTrip:'رحلة جديدة',date:'التاريخ',from:'من',to:'إلى',income:'دخل بيع السمك',expenses:'المصروفات',net:'صافي الربح',owner:'مالك القارب',captain:'القبطان',worker:'الطاقم',earned:'المستحق',paid:'المدفوع',balance:'المتبقي',pay:'دفع',save:'حفظ',del:'حذف',back:'رجوع',edited:'معدّل',cat:'الفئة',qty:'الكمية',unit:'الوحدة',price:'سعر الوحدة',total:'الإجمالي',note:'ملاحظات',why:'سبب التعديل',addExp:'إضافة مصروف',boat:'القارب',ownerPct:'حصة المالك ٪',bonus:'مكافأة القبطان',cur:'العملة',lang:'اللغة',dark:'المظهر',addCrew:'إضافة',name:'الاسم',share:'الحصص',none:'لا شيء بعد',export:'تصدير CSV',backup:'نسخ احتياطي / استعادة',print:'طباعة / PDF',period:'الفترة (YYYY أو YYYY-MM)',months:'الأشهر',byCat:'المصروفات حسب الفئة',cats:'فئات المصروفات (مفصولة بفاصلة)',addBoat:'إضافة قارب',port:'الميناء',ownerName:'اسم المالك',copy:'نسخ',load:'تحميل البيانات',sure:'حذف؟',all:'الإجمالي',payAmt:'المبلغ',close:'إغلاق',years:'السنوات'},
+tr:{trips:'Seferler',reports:'Raporlar',crew:'Mürettebat',settings:'Ayarlar',newTrip:'Yeni sefer',date:'Tarih',from:'Başlangıç',to:'Bitiş',income:'Balık satış geliri',expenses:'Giderler',net:'Net kâr',owner:'Tekne sahibi',captain:'Kaptan',worker:'Mürettebat',earned:'Hak ediş',paid:'Ödenen',balance:'Kalan',pay:'Öde',save:'Kaydet',del:'Sil',back:'Geri',edited:'Düzenlendi',cat:'Kategori',qty:'Miktar',unit:'Birim',price:'Birim fiyat',total:'Toplam',note:'Notlar',why:'Değişiklik nedeni',addExp:'Gider ekle',boat:'Tekne',ownerPct:'Sahip payı %',bonus:'Kaptan primi',cur:'Para birimi',lang:'Dil',dark:'Tema',addCrew:'Ekle',name:'Ad',share:'Paylar',none:'Henüz yok',export:'CSV dışa aktar',backup:'Yedekle / geri yükle',print:'Yazdır / PDF',period:'Dönem (YYYY veya YYYY-AA)',months:'Aylar',byCat:'Kategoriye göre giderler',cats:'Gider kategorileri (virgülle)',addBoat:'Tekne ekle',port:'Liman',ownerName:'Sahip adı',copy:'Kopyala',load:'Veriyi yükle',sure:'Silinsin mi?',all:'Genel toplam',payAmt:'Tutar',close:'Kapat',years:'Yıllar'}};
+const LN={en:'English',fa:'فارسی',ar:'العربية',tr:'Türkçe'};
+const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const uid=()=>Math.random().toString(36).slice(2,9),n=v=>parseFloat(v)||0,K='oceanledger.v1';
+let S=null;try{S=JSON.parse(localStorage.getItem(K))}catch(e){}
+S=S||{set:{lang:'en',theme:'',cur:'USD',cats:['Bait','Ice','Food','Fuel','Oil','Other']},boats:[{id:'b1',name:'Boat 1',port:'',owner:'',op:50,cs:1,bonus:0}],crew:[],trips:[]};
+const save=()=>{try{localStorage.setItem(K,JSON.stringify(S))}catch(e){}};
+const t=k=>(L[S.set.lang]||L.en)[k]||L.en[k]||k;
+const fmt=v=>{try{return new Intl.NumberFormat(S.set.lang,{style:'currency',currency:S.set.cur}).format(v)}catch(e){return v.toFixed(2)+' '+S.set.cur}};
+const bname=id=>(S.boats.find(b=>b.id===id)||{name:'?'}).name;
+const today=()=>new Date(Date.now()-new Date().getTimezoneOffset()*6e4).toISOString().slice(0,10);
+let view='trips',draft=null,armed='',flt={from:'',to:''},rp='';
+
+function calc(x){const inc=n(x.inc),exp=x.ex.reduce((a,e)=>a+n(e.total),0),net=inc-exp,own=net*n(x.op)/100,pool=net-own,bon=x.mem.some(m=>m.cap)?n(x.bonus):0,sh=x.mem.reduce((a,m)=>a+n(m.share),0),u=sh?(pool-bon)/sh:0;
+ const p=x.mem.map(m=>{const earned=n(m.share)*u+(m.cap?bon:0),paid=x.pays.filter(q=>q.id===m.id).reduce((a,q)=>a+n(q.amt),0);return{...m,earned,paid,bal:earned-paid}});
+ return{inc,exp,net,own,pool,p}}
+
+function render(){const s=S.set,r=document.documentElement;r.lang=s.lang;r.dir=(s.lang==='fa'||s.lang==='ar')?'rtl':'ltr';
+ s.theme?r.dataset.theme=s.theme:delete r.dataset.theme;
+ $('#nav').innerHTML=['trips','reports','crew','settings'].map(v=>`<button class="${v===view&&!draft?'on':''}" data-act="nav" data-v="${v}">${t(v)}</button>`).join('');
+ $('#main').innerHTML=draft?edHtml():view==='trips'?trHtml():view==='reports'?rpHtml():view==='crew'?crHtml():stHtml();
+ if(draft)upd()}
+
+const list=()=>S.trips.filter(x=>(!flt.from||x.date>=flt.from)&&(!flt.to||x.date<=flt.to)).sort((a,b)=>b.date.localeCompare(a.date));
+function trHtml(){const l=list();return `<div class="row"><label>${t('from')}<input type="date" data-flt="from" value="${flt.from}"></label><label>${t('to')}<input type="date" data-flt="to" value="${flt.to}"></label></div>
+<div class="row"><button class="pr" data-act="new">+ ${t('newTrip')}</button><button data-act="csv">${t('export')}</button></div>
+${l.map(x=>{const c=calc(x),due=c.p.reduce((a,p)=>a+Math.max(0,p.bal),0);return `<div class="card tap" data-act="open" data-id="${x.id}"><b>${x.date}</b> — ${esc(bname(x.boat))}<div class="mu">${t('income')}: ${fmt(c.inc)} | ${t('net')}: ${fmt(c.net)}</div>${due>.005?`<div class="bad">${t('balance')}: ${fmt(due)}</div>`:'<div class="ok">✓</div>'}</div>`}).join('')||`<p class="mu">${t('none')}</p>`}`}
+
+function edHtml(){const d=draft,num=(k,v,a)=>`<input type="number" step="any" inputmode="decimal" ${a} value="${esc(v)}">`;
+return `<button data-act="back">← ${t('back')}</button>
+<div class="card"><div class="grid"><label>${t('date')}<input type="date" data-k="date" value="${d.date}"></label>
+<label>${t('boat')}<select data-bk="1">${S.boats.map(b=>`<option value="${b.id}" ${b.id===d.boat?'selected':''}>${esc(b.name)}</option>`).join('')}</select></label>
+<label>${t('income')}${num(0,d.inc,'data-k="inc"')}</label>
+<label>${t('ownerPct')}${num(0,d.op,'data-k="op"')}</label>
+<label>${t('bonus')}${num(0,d.bonus,'data-k="bonus"')}</label></div></div>
+<h3>${t('expenses')}</h3>
+${d.ex.map((e,i)=>{const a=f=>`data-e="${i}" data-f="${f}"`;return `<div class="card"><div class="grid">
+<label>${t('cat')}<select ${a('cat')}>${[...new Set([...S.set.cats,e.cat])].map(c=>`<option ${c===e.cat?'selected':''}>${esc(c)}</option>`).join('')}</select></label>
+<label>${t('qty')}${num(0,e.qty,a('qty'))}</label>
+<label>${t('unit')}<input ${a('unit')} value="${esc(e.unit)}"></label>
+<label>${t('price')}${num(0,e.price,a('price'))}</label>
+<label>${t('total')}${num(0,e.total,a('total'))}</label>
+<label>${t('note')}<input ${a('note')} value="${esc(e.note)}"></label></div>
+${e.orig!==undefined?`<label>${t('why')}<input ${a('why')} value="${esc(e.why)}"></label>`:''}
+${e.h&&e.h.length?`<div class="mu">✎ ${t('edited')}: ${e.h.map(h=>`${new Date(h.at).toLocaleString()}: ${fmt(h.o)} → ${fmt(h.n)}${h.w?' ('+esc(h.w)+')':''}`).join(' | ')}</div>`:''}
+<button class="bad" data-act="rmex" data-i="${i}">${t('del')}</button></div>`}).join('')}
+<button data-act="addex">+ ${t('addExp')}</button>
+<h3>${t('crew')}</h3>
+${S.crew.map(c=>{const m=d.mem.find(m=>m.id===c.id),a=f=>`data-m="${c.id}" data-f="${f}"`;return `<div class="card row"><label><input type="checkbox" ${a('on')} ${m?'checked':''}> ${esc(c.name)}</label>${m?`<label>${t('share')}${num(0,m.share,a('share'))}</label><label><input type="radio" name="cap" ${a('cap')} ${m.cap?'checked':''}> ${t('captain')}</label>`:''}</div>`}).join('')||`<p class="mu">${t('none')} → ${t('crew')}</p>`}
+<div id="sum"></div>
+<div class="row"><button class="pr" data-act="save">${t('save')}</button>${d.saved?`<button class="bad" data-act="del">${armed===d.id?t('sure'):t('del')}</button>`:''}<button data-act="print">${t('print')}</button></div>`}
+
+function upd(){const d=draft,c=calc(d),kv=(a,b,x='')=>`<div class="kv ${x}"><span>${a}</span><b>${b}</b></div>`;
+$('#sum').innerHTML=`<div class="card">${kv(t('income'),fmt(c.inc))}${kv(t('expenses'),fmt(c.exp))}${kv(t('net'),fmt(c.net),'big')}${kv(t('owner')+' ('+n(d.op)+'%)',fmt(c.own))}</div>`+
+c.p.map(p=>`<div class="card"><b>${esc(p.name)}</b> <span class="mu">${p.cap?t('captain'):t('worker')} × ${p.share}</span> ${p.bal<=.005&&p.earned>0?'<span class="ok">✓</span>':''}
+${kv(t('earned'),fmt(p.earned))}${kv(t('paid'),fmt(p.paid))}${kv(t('balance'),fmt(p.bal))}
+<div class="row"><input id="pa-${p.id}" type="number" step="any" placeholder="${t('payAmt')}: ${p.bal>0?p.bal.toFixed(2):''}"><button data-act="pay" data-id="${p.id}">${t('pay')}</button></div>
+${d.pays.filter(q=>q.id===p.id).map(q=>`<div class="mu">${new Date(q.at).toLocaleDateString()} — ${fmt(n(q.amt))}</div>`).join('')}</div>`).join('')}
+
+function commit(back){const d=draft;if(!d.date)return false;
+ d.ex.forEach(e=>{const v=n(e.total);if(e.orig!==undefined&&e.orig!==v)(e.h=e.h||[]).push({at:Date.now(),o:e.orig,n:v,w:e.why||''});e.total=v;e.orig=v;e.why=''});
+ d.saved=true;const c=JSON.parse(JSON.stringify(d)),i=S.trips.findIndex(x=>x.id===d.id);i<0?S.trips.push(c):S.trips[i]=c;save();if(back)draft=null;return true}
+
+function rpHtml(){const l=S.trips.filter(x=>x.date.startsWith(rp)),M={},Y={},P={},C={},z=()=>({inc:0,exp:0,net:0,own:0}),T=z();
+ l.forEach(x=>{const c=calc(x);[[M,x.date.slice(0,7)],[Y,x.date.slice(0,4)],[{t:T},'t']].forEach(([o,k])=>{const r=o[k]=o[k]||z();r.inc+=c.inc;r.exp+=c.exp;r.net+=c.net;r.own+=c.own});
+  c.p.forEach(p=>{const r=P[p.id]=P[p.id]||{name:p.name,e:0,p:0};r.e+=p.earned;r.p+=p.paid});
+  x.ex.forEach(e=>C[e.cat]=(C[e.cat]||0)+n(e.total))});
+ const row=(k,r)=>`<tr><td>${esc(k)}</td><td>${fmt(r.inc)}</td><td>${fmt(r.exp)}</td><td>${fmt(r.net)}</td><td>${fmt(r.own)}</td></tr>`,
+ head=`<tr><th></th><th>${t('income')}</th><th>${t('expenses')}</th><th>${t('net')}</th><th>${t('owner')}</th></tr>`;
+ return `<div class="row"><label>${t('period')}<input data-rp="1" value="${esc(rp)}" placeholder="2026"></label><button data-act="csv">${t('export')}</button><button data-act="print">${t('print')}</button></div>
+<div class="card sc"><table>${head}${row(t('all'),T)}</table></div>
+<h3>${t('months')}</h3><div class="card sc"><table>${head}${Object.keys(M).sort().map(k=>row(k,M[k])).join('')}</table></div>
+<h3>${t('years')}</h3><div class="card sc"><table>${head}${Object.keys(Y).sort().map(k=>row(k,Y[k])).join('')}</table></div>
+<h3>${t('crew')}</h3><div class="card sc"><table><tr><th></th><th>${t('earned')}</th><th>${t('paid')}</th><th>${t('balance')}</th></tr>${Object.values(P).map(r=>`<tr><td>${esc(r.name)}</td><td>${fmt(r.e)}</td><td>${fmt(r.p)}</td><td>${fmt(r.e-r.p)}</td></tr>`).join('')}</table></div>
+<h3>${t('byCat')}</h3><div class="card sc"><table>${Object.keys(C).map(k=>`<tr><td>${esc(k)}</td><td>${fmt(C[k])}</td></tr>`).join('')}</table></div>`}
+
+const crHtml=()=>`<div class="row"><label>${t('name')}<input id="cn"></label><button class="pr" data-act="addcrew">${t('addCrew')}</button></div>
+${S.crew.map(c=>`<div class="card row"><b style="flex:1">${esc(c.name)}</b><button class="bad" data-act="rmcrew" data-id="${c.id}">${armed===c.id?t('sure'):t('del')}</button></div>`).join('')||`<p class="mu">${t('none')}</p>`}`;
+
+function stHtml(){const s=S.set;return `<div class="card"><div class="grid">
+<label>${t('lang')}<select data-lang="1">${Object.keys(LN).map(k=>`<option value="${k}" ${k===s.lang?'selected':''}>${LN[k]}</option>`).join('')}</select></label>
+<label>${t('dark')}<button data-act="theme">${s.theme||'auto'}</button></label>
+<label>${t('cur')}<input data-s="cur" value="${esc(s.cur)}" maxlength="3"></label></div>
+<label style="margin-top:8px">${t('cats')}<input data-s="cats" value="${esc(s.cats.join(', '))}"></label></div>
+<h3>${t('boat')}</h3>
+${S.boats.map((b,i)=>{const a=f=>`data-bo="${i}" data-f="${f}"`;return `<div class="card"><div class="grid">
+<label>${t('name')}<input ${a('name')} value="${esc(b.name)}"></label><label>${t('port')}<input ${a('port')} value="${esc(b.port)}"></label><label>${t('ownerName')}<input ${a('owner')} value="${esc(b.owner)}"></label>
+<label>${t('ownerPct')}<input type="number" step="any" ${a('op')} value="${b.op}"></label><label>${t('captain')} ${t('share')}<input type="number" step="any" ${a('cs')} value="${b.cs}"></label><label>${t('bonus')}<input type="number" step="any" ${a('bonus')} value="${b.bonus}"></label></div></div>`}).join('')}
+<div class="row"><button data-act="addboat">+ ${t('addBoat')}</button><button data-act="bk">${t('backup')}</button></div>`}
+
+function box(title,text,onload){const b=$('#box');b.style.display='flex';b.innerHTML=`<div class="card"><b>${esc(title)}</b><textarea id="bx"></textarea><div class="row"><button data-act="cp">${t('copy')}</button><button data-act="dl">⬇</button>${onload?`<button class="pr" data-act="ld">${t('load')}</button>`:''}<button data-act="cl">${t('close')}</button></div></div>`;$('#bx').value=text;box.f=onload;box.name=title}
+function csv(){const q=r=>r.map(c=>'"'+String(c).replace(/"/g,'""')+'"').join(','),R=[[t('date'),t('boat'),t('income'),t('expenses'),t('net'),t('owner'),t('name'),t('worker'),t('earned'),t('paid'),t('balance')]],E=[[t('date'),t('cat'),t('qty'),t('unit'),t('price'),t('total'),t('note')]];
+ list().forEach(x=>{const c=calc(x),b=[x.date,bname(x.boat),c.inc,c.exp,c.net.toFixed(2),c.own.toFixed(2)];if(!c.p.length)R.push(b);c.p.forEach(p=>R.push([...b,p.name,p.cap?t('captain'):t('worker'),p.earned.toFixed(2),p.paid.toFixed(2),p.bal.toFixed(2)]));x.ex.forEach(e=>E.push([x.date,e.cat,e.qty,e.unit,e.price,n(e.total),e.note]))});
+ box('CSV',R.map(q).join('\n')+'\n\n'+E.map(q).join('\n'))}
+
+document.addEventListener('click',ev=>{const b=ev.target.closest('[data-act]');if(!b)return;const a=b.dataset.act,d=draft;
+ if(a==='nav'){view=b.dataset.v;draft=null}
+ else if(a==='new'){const bt=S.boats[0];draft={id:uid(),date:today(),boat:bt.id,inc:'',op:bt.op,bonus:bt.bonus,ex:[],mem:[],pays:[],saved:false}}
+ else if(a==='open'){draft=JSON.parse(JSON.stringify(S.trips.find(x=>x.id===b.dataset.id)))}
+ else if(a==='back')draft=null;
+ else if(a==='addex')d.ex.push({id:uid(),cat:S.set.cats[0]||'',qty:'',unit:'',price:'',total:'',note:'',man:false});
+ else if(a==='rmex')d.ex.splice(+b.dataset.i,1);
+ else if(a==='save'){if(!commit(true))return}
+ else if(a==='del'){if(armed===d.id){S.trips=S.trips.filter(x=>x.id!==d.id);save();draft=null;armed=''}else armed=d.id}
+ else if(a==='pay'){const c=calc(d).p.find(p=>p.id===b.dataset.id),v=n($('#pa-'+c.id).value)||c.bal;if(v<=0)return;d.pays.push({id:c.id,amt:v,at:Date.now()});commit(false)}
+ else if(a==='print')window.print();
+ else if(a==='csv'){csv();return}
+ else if(a==='addcrew'){const v=$('#cn').value.trim();if(!v)return;S.crew.push({id:uid(),name:v});save()}
+ else if(a==='rmcrew'){if(armed===b.dataset.id){S.crew=S.crew.filter(c=>c.id!==armed);save();armed=''}else armed=b.dataset.id}
+ else if(a==='addboat'){S.boats.push({id:uid(),name:'Boat '+(S.boats.length+1),port:'',owner:'',op:50,cs:1,bonus:0});save()}
+ else if(a==='theme'){S.set.theme=S.set.theme===''?'light':S.set.theme==='light'?'dark':'';save()}
+ else if(a==='bk'){box(t('backup'),JSON.stringify(S),txt=>{S=JSON.parse(txt);save();$('#box').style.display='none';render()});return}
+ else if(a==='cp'){$('#bx').select();try{document.execCommand('copy')}catch(e){}return}
+ else if(a==='dl'){try{const u=URL.createObjectURL(new Blob(['\ufeff'+$('#bx').value],{type:'text/plain'})),l=document.createElement('a');l.href=u;l.download='oceanledger-'+today()+'.txt';l.click()}catch(e){}return}
+ else if(a==='ld'){try{box.f($('#bx').value)}catch(e){$('#bx').value='Invalid data'}return}
+ else if(a==='cl'){$('#box').style.display='none';return}
+ render()});
+
+document.addEventListener('input',ev=>{const el=ev.target,D=el.dataset;if(el.tagName==='SELECT'||el.type==='checkbox'||el.type==='radio')return;
+ if(D.rp!==undefined){rp=el.value;return}
+ if(D.s){S.set[D.s]=D.s==='cats'?el.value.split(',').map(x=>x.trim()).filter(Boolean):el.value.toUpperCase();save();return}
+ if(D.bo){S.boats[+D.bo][D.f]=['op','cs','bonus'].includes(D.f)?n(el.value):el.value;save();return}
+ if(!draft)return;const d=draft;
+ if(D.k)d[D.k]=el.value;
+ else if(D.e!==undefined){const e=d.ex[+D.e],f=D.f;e[f]=el.value;
+  if(f==='total')e.man=el.value!=='';
+  if((f==='qty'||f==='price'||f==='total')&&!e.man){e.total=String(+((e.qty===''?1:n(e.qty))*n(e.price)).toFixed(2));const o=document.querySelector(`[data-e="${D.e}"][data-f="total"]`);if(o)o.value=e.total}
+  if((f==='qty'||f==='price')&&!e.man){e.total=String(+((e.qty===''?1:n(e.qty))*n(e.price)).toFixed(2));const o=document.querySelector(`[data-e="${D.e}"][data-f="total"]`);if(o)o.value=e.total}}
+ else if(D.m&&D.f==='share')d.mem.find(m=>m.id===D.m).share=el.value;
+ upd()});
+
+document.addEventListener('change',ev=>{const el=ev.target,D=el.dataset;
+ if(D.flt){flt[D.flt]=el.value;render();return}
+ if(D.lang){S.set.lang=el.value;save();render();return}
+ if(!draft)return;const d=draft;
+ if(D.bk){d.boat=el.value;const b=S.boats.find(b=>b.id===el.value);d.op=b.op;d.bonus=b.bonus;render()}
+ else if(D.e!==undefined&&D.f==='cat'){d.ex[+D.e].cat=el.value}
+ else if(D.m){const c=S.crew.find(c=>c.id===D.m);
+  if(D.f==='on'){el.checked?d.mem.push({id:c.id,name:c.name,share:'1',cap:false}):d.mem=d.mem.filter(m=>m.id!==D.m)}
+  if(D.f==='cap'){d.mem.forEach(m=>m.cap=false);const m=d.mem.find(m=>m.id===D.m);m.cap=true;if(m.share==='1')m.share=String(S.boats.find(b=>b.id===d.boat).cs)}
+  render()}});
+
+render();
+if('serviceWorker' in navigator&&location.protocol.startsWith('http')){let r=false;navigator.serviceWorker.addEventListener('controllerchange',()=>{if(r)return;r=true;if(window.__hadSW)location.reload()});window.__hadSW=!!navigator.serviceWorker.controller;navigator.serviceWorker.register('sw.js').catch(()=>{})}
+</script></body></html>
